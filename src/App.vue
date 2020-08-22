@@ -13,8 +13,8 @@ export default {
 <style>
 body {
     color: #fff;
-    background: #6d3ee5 url('assets/image/bg.png') no-repeat top center;
-    background-size: 100%;
+    background: #fff url('assets/image/bg.jpg') no-repeat top center;
+    background-size: cover;
     font: 14px/1.28 "Montserrat", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
 }
 </style>

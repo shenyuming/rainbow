@@ -6,9 +6,9 @@ export default new Router({
         {
             path: "/",
             redirect:'/home',
-            component: () => import("@/views/index"),
+            component: () => import("@/views/home"),
             meta: {
-                title: "Hypescript",
+                title: "RainBow",
                 keepAlive: true
             },
         },{
@@ -16,7 +16,24 @@ export default new Router({
             name: "home",
             component: () => import("@/views/home"),
             meta: {
-                title: "Hypescript",
+                title: "RainBow",
+                keepAlive: true
+            }
+        },
+        {
+            path: "/about",
+            name: "about",
+            component: () => import("@/views/about"),
+            meta: {
+                title: "RainBow",
+                keepAlive: true
+            }
+        }, {
+            path: "/login",
+            name: "login",
+            component: () => import("@/views/login"),
+            meta: {
+                title: "RainBow",
                 keepAlive: true
             }
         }
