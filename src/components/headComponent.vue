@@ -2,8 +2,7 @@
     <div class="headTitleWrap">
         <div class="top">
             <div id="showPart" v-show="showSlid" @click="openSlid">
-                <!-- <img class="titie" src="../assets/image/goods-title.png" alt="" /> -->
-                <img class="titie" src="../assets/image/arrowZhan.png" alt="" />
+                <img class="titie" src="../assets/image/goods-title.png" alt="" />
             </div>
             <div class="allInfo" v-show="showAll">
                 <p class="itemImg" @click="openAll">
@@ -11,11 +10,11 @@
                 </p>
                 <div v-show="showAll">
                     <p class="item active">Datacenter</p>
-                    <p class="item">Top Up</p>
-                    <p class="item">Product</p>
+                    <p class="item" @click="toUp">Top Up</p>
+                    <p class="item" @click="gohome">Product</p>
                     <p class="item">Terms</p>
-                    <p class="item">My Count</p>
-                    <p class="item">Support</p>
+                    <p class="item" @click="gologin">My Count</p>
+                    <p class="item" @click="goSupport">Support</p>
                 </div>
             </div>
         </div>
@@ -34,15 +33,25 @@ export default {
     watch: {},
     computed: {},
     methods: {
+        toUp() {
+            window.scrollTo(0, 0)
+        },
+        gohome() {
+            this.$router.push({ path: '/home' })
+        },
+        gologin() {
+            this.$router.push({ path: '/login' })
+        },
+        goSupport() {
+            this.$router.push({ path: '/about' })
+        },
         openSlid() {
             this.showAll = true;
             this.showSlid = false;
-            console.log(this.showAll)
             if (this.showAll) {
-                console.log($('.allInfo'))
                 $('.allInfo').animate({
                     width: '700px'
-                }, 1000); //菜单块向右移动
+                }, 1000);
             }
         },
         openAll() {
@@ -66,22 +75,31 @@ export default {
     width: 1200px;
     margin: 40px auto;
     .titie {
-        height: 58px;
+        height: 36px;
+        box-shadow: -2px 0px 10px #aaa, /*左边阴影*/
+        0px -2px 10px #aaa, /*上边阴影*/
+        4px 0px 10px #aaa, /*右边阴影*/
+        0px 5px 10px #aaa;
+        border-radius: 36px;
         cursor: pointer;
     }
     .allInfo {
         background-color: #fff;
-        height: 36px;
-        line-height: 36px;
-        border-radius: 36px;
+        height: 34px;
+        line-height: 34px;
+        border-radius: 34px;
         position: relative;
-        left: 10px;
-        top: 8px;
-        width: 144px; // overflow: hidden;
+        width: 144px;
+        box-shadow: -2px 0px 10px #aaa, /*左边阴影*/
+        0px -2px 10px #aaa, /*上边阴影*/
+        4px 0px 10px #aaa, /*右边阴影*/
+        0px 5px 10px #aaa;
+        border-radius: 36px;
         .itemImg {
             position: absolute;
+            top: -1px;
             .imgGoods {
-                height: 58px;
+                height: 36px;
                 cursor: pointer;
             }
         }
