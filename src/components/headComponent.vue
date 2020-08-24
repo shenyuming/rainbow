@@ -14,12 +14,12 @@
                     <p class="item" @click="gohome">Product</p>
                     <p class="item" @click="goSupport">Terms</p>
                     <p class="item" @click="gologin">My Count</p>
-                    <p class="item" @click="goSupport">Support</p>
+                    <p class="item" @click="hrefNewWay">Support</p>
                 </div>
             </div>
            
         </div>
-         <div class="other" @click="hrefNewWay">
+         <div class="other" @click="goSupport">
                 Terms & Conditions
             </div>
     </div>
