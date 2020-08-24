@@ -25,6 +25,9 @@
                                 <p>Foam midsole</p>
                                 <p>Rubber waffle outsole</p> -->
                             </div>
+                            <div class="price">
+                                80 usd
+                            </div>
                             <div class="subInfo">
                                 <p>Style:NKCD6864-102</p>
                                 <p>Color:White/Particle Grey/Light Smoke</p>
@@ -56,6 +59,9 @@
                                 <p>Flat cotton laces</p>
                                 <p>Matte rubber foxing</p>
                                 <p>Rubber outsole</p>
+                            </div>
+                            <div class="price">
+                                120 usd
                             </div>
                             <div class="subInfo">
                                 <p>Style:CN169008C</p>
@@ -92,6 +98,9 @@
                                 <p>Visible sole unit</p>
                                 <!-- <p>Foam midsole</p>
                                 <p>Rubber waffle outsole</p> -->
+                            </div>
+                             <div class="price">
+                                150 usd
                             </div>
                             <div class="subInfo">
                                 <p>Style:NKCD6864-102</p>
@@ -259,6 +268,11 @@ export default {
                         padding: 0 20px;
                         font-size: 12px;
                     }
+                }
+                .price{
+                    color:red;
+                    padding-left: 30px;
+                    font-size: 18px;
                 }
                 .subInfo {
                     margin: 10px 0;
