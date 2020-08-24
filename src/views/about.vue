@@ -9,7 +9,7 @@
     
             <div class="contain">
                 <vue-scroll :ops="ops">
-                    Use of the website operated by rainbow Retail, LLC, rainbow Treats LLC, and their affiliates (collectively, “rainbow,” “we,” “us,” “our”) with home pages located at 待定, any related apps that rainbow may provide, together with all products and services
+                    Use of the website operated by rainbow Retail, LLC, rainbow Treats LLC, and their affiliates (collectively, “rainbow,” “we,” “us,” “our”) with home pages located at proxyrainbow.com, any related apps that rainbow may provide, together with all products and services
                     rainbow may offer from time to time via rainbow’s website and/or related apps, rainbow’s related social media sites and pages (for example, on Instagram, Twitter, and Facebook), or otherwise through your interactions with rainbow (the
                     website, apps, products, services, and social media pages, collectively, the “Services”) are subject to the terms and conditions stated herein (“Terms and Conditions”). Your use of the Services through Apple iOS mobile application software
                     is subject to the additional terms set forth in Annex A, which are incorporated herein. By your use of the Services you agree to these Terms and Conditions, and you certify that you are 18 years old or older and are able and competent
