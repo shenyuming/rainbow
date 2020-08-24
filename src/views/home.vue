@@ -35,7 +35,7 @@
                             </div>
                             <div class="operate">
                                 <img @click="showDetail()" classs="size" src="../assets/image/size.png" alt="">
-                                <img class="buy" src="../assets/image/buy.png" alt="">
+                                <img  @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
                             </div>
                         </div>
                         <div class="size" v-if="showFlag">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="operate">
                                 <img @mouseover="showDetail1()" classs="size" src="../assets/image/size.png" alt="">
-                                <img class="buy" src="../assets/image/buy.png" alt="">
+                                <img @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
                             </div>
                             <div class="size" v-if="showFlag1">
                                 <div class="likeUl" v-for="(item,index) in sizeList1" :key="index">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="operate">
                                 <img @mouseover="showDetail2()" classs="size" src="../assets/image/size.png" alt="">
-                                <img class="buy" src="../assets/image/buy.png" alt="">
+                                <img  @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
                             </div>
                             <div class="size" v-if="showFlag2">
                                 <div class="likeUl" v-for="(item,index) in sizeList2" :key="index">
@@ -212,6 +212,10 @@ export default {
         },
         showDetail2() {
             this.showFlag2 = !this.showFlag2
+        },
+        hrefNewWay(){
+            console.log('111')
+            window.location.href="http://www.proxyrainbow.com/shipping.html"
         }
 
     },

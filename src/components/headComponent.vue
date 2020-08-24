@@ -17,7 +17,11 @@
                     <p class="item" @click="goSupport">Support</p>
                 </div>
             </div>
+           
         </div>
+         <div class="other">
+                Terms & Conditions
+            </div>
     </div>
 </template>
 
@@ -74,6 +78,16 @@ export default {
 .headTitleWrap {
     width: 1200px;
     margin: 40px auto;
+    overflow: hidden;
+    .top{
+        float: left;
+    }
+    .other{
+        float: right;
+        font-size:18px;
+        color:#1a9bff;
+        cursor: pointer;
+    }
     .titie {
         height: 36px;
         box-shadow: -2px 0px 10px #aaa, /*左边阴影*/
