@@ -14,7 +14,7 @@
                     <p class="item" @click="gohome">Product</p>
                     <p class="item" @click="goSupport">Terms</p>
                     <p class="item" @click="gologin">My Count</p>
-                    <p class="item" @click="hrefNewWay">Support</p>
+                    <p class="item" @click="goSupport">Support</p>
                 </div>
             </div>
            
