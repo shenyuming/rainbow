@@ -214,7 +214,6 @@ export default {
             this.showFlag2 = !this.showFlag2
         },
         hrefNewWay(){
-            console.log('111')
             window.location.href="http://www.proxyrainbow.com/shipping.html"
         }
 

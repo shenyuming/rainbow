@@ -12,14 +12,14 @@
                     <p class="item active">Datacenter</p>
                     <p class="item" @click="toUp">Top Up</p>
                     <p class="item" @click="gohome">Product</p>
-                    <p class="item">Terms</p>
+                    <p class="item" @click="goSupport">Terms</p>
                     <p class="item" @click="gologin">My Count</p>
                     <p class="item" @click="goSupport">Support</p>
                 </div>
             </div>
            
         </div>
-         <div class="other">
+         <div class="other" @click="hrefNewWay">
                 Terms & Conditions
             </div>
     </div>
@@ -37,6 +37,9 @@ export default {
     watch: {},
     computed: {},
     methods: {
+        hrefNewWay(){
+            window.location.href="http://www.proxyrainbow.com/shipping.html"
+        },
         toUp() {
             window.scrollTo(0, 0)
         },
