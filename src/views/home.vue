@@ -8,30 +8,24 @@
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item1.jpg" alt="">
+                                <img src="../assets/image/item1.png" alt="">
                             </div>
-                            <p class="brand">NIKE GRADE SCHOOL AIR MAX 90 LTR</p>
+                            <p class="brand">男鞋女鞋夏季透气百搭男士休闲皮鞋2020新款</p>
                             <div class="detail">
-                                <p>Grade School Air Max 90 sihouette</p>
-                                <p>Leather upper</p>
-                                <p>Suede overlayes</p>
-                                <p>Padded collar</p>
-                                <p>TPU eyelets</p>
-                                <p>Nike Swoosh patch on tongue</p>
-                                <p>Air Max branding on side panel</p>
-                                <p>Rubberized Nike Air patch on heel</p>
-                                <p>Flat cotton laces</p>
-                                <!-- <p>Visible sole unit</p>
-                                <p>Foam midsole</p>
-                                <p>Rubber waffle outsole</p> -->
+                                <p>功能: 透气</p>
+                                <p>闭合方式: 系带</p>
+                                <p>风格: 休闲</p>
+                                <p>流行元素: 素面</p>
+                                <p>鞋跟高: 平跟</p>
+                                <p>季节: 夏季</p>
                             </div>
                             <div class="price">
                                 80 usd
                             </div>
                             <div class="subInfo">
-                                <p>Style:NKCD6864-102</p>
-                                <p>Color:White/Particle Grey/Light Smoke</p>
-                                <p>Material:Leather/Suede</p>
+                                <p>货号: ZT-9151</p>
+                                <p>图案: 纯色</p>
+                                <p>低帮鞋品名: 休闲皮鞋</p>
                             </div>
                             <div class="operate">
                                 <img @click="showDetail()" classs="size" src="../assets/image/size.png" alt="">
@@ -47,26 +41,24 @@
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item2.jpg" alt="">
+                                <img src="../assets/image/item2.png" alt="">
                             </div>
-                            <p class="brand">CONVERSE X FENG CHEN WANG JACK PURCELL MID</p>
+                            <p class="brand">内增高鞋女鞋男鞋6cm女士男士小白鞋真皮潮流百搭男潮鞋增高休闲板鞋</p>
                             <div class="detail">
-                                <p>Jack Purcell Mid sihouette</p>
-                                <p>PU coated nubuck leather upper</p>
-                                <p>Feng Chen Wang branding on lateral heel</p>
-                                <p>Converse Jack Purcell On rear</p>
-                                <p>Tonal stitching</p>
-                                <p>Flat cotton laces</p>
-                                <p>Matte rubber foxing</p>
-                                <p>Rubber outsole</p>
+                                <p>功能: 轻质</p>
+                                <p>闭合方式: 系带</p>
+                                <p>图案: 拼色</p>
+                                <p>风格: 青春潮流</p>
+                                <p>流行元素: 车缝线</p>
+                                <p>鞋跟高: 低跟</p>
                             </div>
                             <div class="price">
                                 120 usd
                             </div>
                             <div class="subInfo">
-                                <p>Style:CN169008C</p>
-                                <p>Color:Obsidian/Sea Salt/Black</p>
-                                <p>Material:Leather/Nubuck</p>
+                                <p>货号: 0830705-2XA</p>
+                                <p>低帮鞋品名: 板鞋</p>
+                                <p>季节: 春秋</p>
                             </div>
                             <div class="operate">
                                 <img @mouseover="showDetail1()" classs="size" src="../assets/image/size.png" alt="">
@@ -82,30 +74,24 @@
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item3.jpg" alt="">
+                                <img src="../assets/image/item3.png" alt="">
                             </div>
                             <p class="brand">ADIDAS CONSORTIUM X HUMAN MADE CAMPUS</p>
                             <div class="detail">
-                                <p>Grade School Air Max 90 sihouette</p>
-                                <p>Leather upper</p>
-                                <p>Suede overlayes</p>
-                                <p>Padded collar</p>
-                                <p>TPU eyelets</p>
-                                <p>Nike Swoosh patch on tongue</p>
-                                <p>Air Max branding on side panel</p>
-                                <p>Rubberized Nike Air patch on heel</p>
-                                <p>Flat cotton laces</p>
-                                <p>Visible sole unit</p>
-                                <!-- <p>Foam midsole</p>
-                                <p>Rubber waffle outsole</p> -->
+                                <p>功能:透气</p>
+                                <p>闭合方式: 系带</p>
+                                <p>图案: 纯色</p>
+                                <p>风格:休闲</p>
+                                <p>流行元素: 车缝线</p>
+                                <p>鞋跟高: 低跟</p>
                             </div>
                              <div class="price">
                                 150 usd
                             </div>
                             <div class="subInfo">
-                                <p>Style:NKCD6864-102</p>
-                                <p>Color:White/Particle Grey/Light Smoke</p>
-                                <p>Material:Leather/Suede</p>
+                                <p>货号: 7977</p>
+                                <p>低帮鞋品名: 休闲皮鞋</p>
+                                <p>季节: 春秋</p>
                             </div>
                             <div class="operate">
                                 <img @mouseover="showDetail2()" classs="size" src="../assets/image/size.png" alt="">
@@ -249,6 +235,7 @@ export default {
                     background-color: #fff;
                     img {
                         width: 240px;
+                        height: 240px;
                     }
                 }
                 .brand {
