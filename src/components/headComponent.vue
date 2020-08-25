@@ -19,8 +19,12 @@
             </div>
            
         </div>
+        
          <div class="other" @click="goSupport">
                 Terms & Conditions
+        </div>
+            <div class="contact" @click="goSupport">
+                contact us
             </div>
     </div>
 </template>
@@ -90,6 +94,13 @@ export default {
         font-size:18px;
         color:#1a9bff;
         cursor: pointer;
+    }
+    .contact{
+         float: right;
+        font-size:18px;
+        color:#1a9bff;
+        cursor: pointer;
+         margin-right: 40px;
     }
     .titie {
         height: 36px;
