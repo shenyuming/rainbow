@@ -23,7 +23,7 @@
          <div class="other" @click="goSupport">
                 Terms & Conditions
         </div>
-            <div class="contact" @click="goSupport">
+            <div class="contact" @click="goContact">
                 contact us
             </div>
     </div>
@@ -41,6 +41,9 @@ export default {
     watch: {},
     computed: {},
     methods: {
+        goContact(){
+           window.location.href= 'http://www.proxyrainbow.com/contactus.html'
+        },
         hrefNewWay(){
             window.location.href="http://www.proxyrainbow.com/shipping.html"
         },
