@@ -9,11 +9,11 @@
                     <img class="imgGoods" src="../assets/image/arrowZhan.png" alt="" />
                 </p>
                 <div v-show="showAll">
-                    <p id="item1" class="item active1" style="margin-left: 140px;" @click="gohome">Product</p>
-                    <p id="item2" class="item" @click="goOrder">Orders</p>
-                    <p id="item3" class="item" @click="goSupport">Terms</p>
+                    <p id="item1" class="item" :class="{'active1':isFlag1}" style="margin-left: 140px;" @click="gohome">Product</p>
+                    <p id="item2" class="item" :class="{'active2':isFlag2}" @click="goOrder">Orders</p>
+                    <p id="item3" class="item" :class="{'active3':isFlag3}" @click="goSupport">Terms</p>
                     <!-- <p class="item" @click="gologin">My Count</p>
-                        <p class="item" @click="goSupport">Support</p> -->
+                            <p class="item" @click="goSupport">Support</p> -->
                 </div>
             </div>
     
@@ -38,7 +38,24 @@ export default {
         }
     },
     watch: {},
-    computed: {},
+    computed: {
+        isFlag1() {
+            if (this.$route.path == '/home') {
+                return true
+            }
+        },
+        isFlag2() {
+            if (this.$route.path == '/order') {
+                return true
+            }
+        },
+        isFlag3() {
+            if (this.$route.path == '/about') {
+                return true
+            }
+        },
+
+    },
     methods: {
         goContact() {
             window.location.href = 'http://www.proxyrainbow.com/contactus.html'
