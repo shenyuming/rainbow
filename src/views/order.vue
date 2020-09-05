@@ -15,12 +15,12 @@ import cloudComponent from '@/components/cloudComponent'
 import Utils from "@/utils/util"
 import Oidc from "oidc-client";
 var config = {
-    authority: "https://www.proxyrainbow.com:12796",
-    clientId: "Tge.Pro",
-    redirectUri: "http://localhost:8080" + "/#/oidc-callback",
-    responseType: "code",
-    scope: "openid profile Tgeapi",
-    post_logout_redirect_uri: "http://localhost:8080/"
+    authority: "http://localhost:5000",
+    client_id: "js",
+    redirect_uri: "http://localhost:5003/CallBack",
+    response_type: "id_token token",
+    scope: "openid profile api1",
+    post_logout_redirect_uri: "http://localhost:5003/"
 };
 var mgr = new Oidc.UserManager(config);
 export default {
@@ -34,10 +34,8 @@ export default {
     methods: {
         login() {
             var that = this;
-            console.log( mgr.getUser())
             mgr.getUser().then(function(user) {
-                console.log(user)
-                var url = "http://localhost:8080/identity";
+                var url = "http://localhost:5001/identity";
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", url);
                 xhr.onload = function() {

@@ -9,23 +9,22 @@
                     <img class="imgGoods" src="../assets/image/arrowZhan.png" alt="" />
                 </p>
                 <div v-show="showAll">
-                    <p class="item active">Datacenter</p>
-                    <p class="item" @click="toUp">Top Up</p>
-                    <p class="item" @click="gohome">Product</p>
-                    <p class="item" @click="goSupport">Terms</p>
-                    <p class="item" @click="gologin">My Count</p>
-                    <p class="item" @click="goSupport">Support</p>
+                    <p id="item1" class="item active1" style="margin-left: 140px;" @click="gohome">Product</p>
+                    <p id="item2" class="item" @click="goOrder">Orders</p>
+                    <p id="item3" class="item" @click="goSupport">Terms</p>
+                    <!-- <p class="item" @click="gologin">My Count</p>
+                        <p class="item" @click="goSupport">Support</p> -->
                 </div>
             </div>
-           
+    
         </div>
-        
-         <div class="other" @click="goSupport">
-                Terms & Conditions
+    
+        <div class="other" @click="goSupport">
+            Terms & Conditions
         </div>
-            <div class="contact" @click="goContact">
-                contact us
-            </div>
+        <div class="contact" @click="goContact">
+            contact us
+        </div>
     </div>
 </template>
 
@@ -41,20 +40,18 @@ export default {
     watch: {},
     computed: {},
     methods: {
-        goContact(){
-           window.location.href= 'http://www.proxyrainbow.com/contactus.html'
+        goContact() {
+            window.location.href = 'http://www.proxyrainbow.com/contactus.html'
         },
-        hrefNewWay(){
-            window.location.href="http://www.proxyrainbow.com/shipping.html"
-        },
-        toUp() {
-            window.scrollTo(0, 0)
+        hrefNewWay() {
+            window.location.href = "http://www.proxyrainbow.com/shipping.html"
         },
         gohome() {
+            // document.getElementById("item2").classList.add("active2");
             this.$router.push({ path: '/home' })
         },
-        gologin() {
-            this.$router.push({ path: '/login' })
+        goOrder() {
+            this.$router.push({ path: '/order' })
         },
         goSupport() {
             this.$router.push({ path: '/about' })
@@ -64,17 +61,16 @@ export default {
             this.showSlid = false;
             if (this.showAll) {
                 $('.allInfo').animate({
-                    width: '700px'
+                    width: '480px'
                 }, 1000);
             }
         },
         openAll() {
             this.showSlid = true;
             this.showAll = false;
-            console.log(this.showAll)
             if (this.showSlid) {
                 $('.allInfo').animate({
-                    width: '-700px'
+                    width: '-480px'
                 }, 1000); //菜单块向左移动
             }
         }
@@ -89,21 +85,21 @@ export default {
     width: 1200px;
     margin: 40px auto;
     overflow: hidden;
-    .top{
+    .top {
         float: left;
     }
-    .other{
+    .other {
         float: right;
-        font-size:18px;
-        color:#1a9bff;
+        font-size: 18px;
+        color: #1a9bff;
         cursor: pointer;
     }
-    .contact{
-         float: right;
-        font-size:18px;
-        color:#1a9bff;
+    .contact {
+        float: right;
+        font-size: 18px;
+        color: #1a9bff;
         cursor: pointer;
-         margin-right: 40px;
+        margin-right: 40px;
     }
     .titie {
         height: 36px;
@@ -140,8 +136,14 @@ export default {
             cursor: pointer;
             color: #737373;
         }
-        .active {
-            color: #ba86ea;
+        .active1 {
+            color: #ff4a6d;
+        }
+        .active2 {
+            color: #fb9d6a;
+        }
+        .active3 {
+            color: #5bcbf0;
         }
     }
 }
