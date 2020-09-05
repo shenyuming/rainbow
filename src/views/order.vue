@@ -41,10 +41,10 @@
                     </div>
                 </div>
                 <!-- <div class="noStatus content">
-                                 <img class="noStatus" src="../assets/image/rainNo.png" alt="">
-                         </div> -->
+                                         <img class="noStatus" src="../assets/image/rainNo.png" alt="">
+                                 </div> -->
                 <div class="hasStatus content">
-                    <div class="hasInner">
+                    <div class="hasInner" id="hasInner">
                         {{data}}
                     </div>
                     <img class="copy clipboardBtn" :data-clipboard-text="data" @click="copy" src="../assets/image/copy.png" alt="">
@@ -62,7 +62,7 @@
                 <div class="generate greyNot" :class="{'purple':isShowGenerate}">
                     GENERATE
                 </div>
-                <div class="generate grey">
+                <div class="generate grey" @click="deleteInfo()">
                     DELETE
                 </div>
                 <div class="times">
@@ -121,11 +121,18 @@ export default {
         }
     },
     methods: {
+        //删除
+        deleteInfo() {
+            this.data = '';
+            this.$message({
+                message: '清空数据成功~'
+            });
+        },
         //复制
         copy() {
             let clipboard = new Clipboard('.clipboardBtn')
             clipboard.on('success', e => {
-                _this.$message({
+                this.$message({
                     message: '复制成功'
                 });
                 // 释放内存
@@ -133,7 +140,7 @@ export default {
             })
             clipboard.on('error', e => {
                 // 不支持复制
-                _this.$message({
+                this.$message({
                     message: '该浏览器不支持自动复制'
                 });
                 // 释放内存
