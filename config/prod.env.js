@@ -11,5 +11,5 @@ module.exports = {
     silentRedirectUri: '"http://localhost:8080/silent-renew-oidc.html"'
   },
   NODE_ENV: '"production"',
-  BASE_API:'"https://api.hypescript.io"',
+  BASE_API:'"https://www.proxyrainbow.com"',
 }

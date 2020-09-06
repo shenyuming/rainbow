@@ -11,7 +11,7 @@ axios.interceptors.request.use(config => {
         //   'Access-Control-Allow-Headers':'X-Requested-With,Content-Type',
         //   'Access-Control-Allow-Methods':'PUT,POST,GET,DELETE,OPTIONS',
     }
-    if (store.getters.isIdentityAuth) {
+    if (store.getters.oidcAccessToken) {
       config.headers['Authorization'] = 'Bearer ' + store.getters.oidcAccessToken
     }
     showLoading();

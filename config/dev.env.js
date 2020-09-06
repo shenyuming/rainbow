@@ -14,5 +14,5 @@ module.exports = merge(prodEnv, {
     silentRedirectUri: '"http://localhost:8080/silent-renew-oidc.html"'
   },
   NODE_ENV: '"development"',
-  BASE_API:'"https://www.proxyrainbow.com"',
+  BASE_API:'"http://www.tge-eureka.com:52789"',
 })

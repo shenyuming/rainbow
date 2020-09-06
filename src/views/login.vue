@@ -4,7 +4,7 @@
         <div class="loginWrap">
             <img class="logo" src="../assets/image/logo.png" alt="">
             <img class="welcome" src="../assets/image/welcome.png" alt="">
-            <img class="discord" @click="login" src="../assets/image/discord.png" alt="">
+            <img class="discord" src="../assets/image/discord.png" alt="">
         </div>
     </div>
 </template>

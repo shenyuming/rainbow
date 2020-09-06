@@ -41,25 +41,25 @@
                     </div>
                 </div>
                 <!-- <div class="noStatus content">
-                                         <img class="noStatus" src="../assets/image/rainNo.png" alt="">
-                                 </div> -->
+                                             <img class="noStatus" src="../assets/image/rainNo.png" alt="">
+                                     </div> -->
                 <div class="hasStatus content">
                     <div class="hasInner" id="hasInner">
-                        {{data}}
+                        {{content}}
                     </div>
-                    <img class="copy clipboardBtn" :data-clipboard-text="data" @click="copy" src="../assets/image/copy.png" alt="">
+                    <img class="copy clipboardBtn" :data-clipboard-text="content" @click="copy" src="../assets/image/copy.png" alt="">
                 </div>
             </div>
             <div class="rightInfo">
                 <div class="top">
                     <p class="name">Total</p>
-                    <p class="detail">XXGB</p>
+                    <p class="detail">{{totalBandWidth}}GB</p>
                     <p class="name">Used</p>
-                    <p class="detail">XXGB</p>
+                    <p class="detail">{{usedBandWidth}}GB</p>
                     <p class="name">Remain</p>
-                    <p class="detail">XXGB</p>
+                    <p class="detail">{{totalBandWidth-usedBandWidth}}GB</p>
                 </div>
-                <div class="generate greyNot" :class="{'purple':isShowGenerate}">
+                <div class="generate greyNot" :class="{'purple':isShowGenerate}" @click="generateForm"> 
                     GENERATE
                 </div>
                 <div class="generate grey" @click="deleteInfo()">
@@ -80,7 +80,9 @@
 import cloudComponent from '@/components/cloudComponent'
 import headComponent from '@/components/headComponent'
 import Utils from "@/utils/util"
+import store from '@/store/index'
 import Clipboard from 'clipboard'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: "order",
     components: {
@@ -109,7 +111,9 @@ export default {
             currenIndex1: 0,
             currenIndex2: 0,
             amount: '',
-            data: '11111'
+            content: '',
+            totalBandWidth: '',
+            usedBandWidth: '',
         }
     },
     computed: {
@@ -117,10 +121,58 @@ export default {
             if (this.select0 && this.select1 && this.select2 && this.amount) {
                 return true
             }
-
-        }
+        },
     },
     methods: {
+        //查询流量
+        queryBrand() {
+            var _this = this;
+            _this.$ajax.get(this.URLS.GetBandwidth, {
+                    params: {
+                        key: store.getters.oidcUser.Key
+                    }
+                })
+                .then(function(response) {
+                    if (response.data.code == '200') {
+                        _this.totalBandWidth = Number(response.data.result.totalBandWidth);
+                        _this.usedBandWidth = Number(response.data.result.usedBandWidth);
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        },
+        //生成代理页面
+        generateForm() {
+            var _this = this;
+            var countryNum;
+            if(_this.select1 == 'Footisite'){
+                countryNum = 2;
+            }else{
+                countryNum = 1;
+            }
+            _this.$ajax.get(this.URLS.GenerateProxy, {
+                    params: {
+                        key: store.getters.oidcUser.Key,
+                        country:_this.select2,
+                        num:_this.amount,
+                        poolNum:countryNum
+                    }
+                })
+                .then(function(response) {
+                    console.log(response)
+                    if (response.data.code == '200') {
+                       _this.content =  response.data.result;
+                    }else{
+                         _this.$message({
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        },
         //删除
         deleteInfo() {
             this.data = '';
@@ -181,7 +233,10 @@ export default {
             }
         },
     },
-    created() {},
+    created() {
+        this.queryBrand();
+        console.log(store.getters)
+    },
 };
 </script>
 
@@ -350,6 +405,7 @@ export default {
         }
         .purple {
             background: linear-gradient(to right, #ba86e8, #cba5cc) !important;
+            cursor:pointer !important;
         }
         .grey {
             background: linear-gradient(to right, #a4a4a2, #cbcbcb);
