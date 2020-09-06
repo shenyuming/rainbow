@@ -13,16 +13,6 @@
 <script>
 import cloudComponent from '@/components/cloudComponent'
 import Utils from "@/utils/util"
-import Oidc from "oidc-client";
-var config = {
-    authority: "https://www.proxyrainbow.com:12796",
-    clientId: "Tge.Pro",
-    redirectUri: "http://localhost:8080" + "/#/oidc-callback",
-    responseType: "code",
-    scope: "openid profile Tgeapi",
-    post_logout_redirect_uri: "http://localhost:8080/"
-};
-var mgr = new Oidc.UserManager(config);
 export default {
     name: "login",
     components: {
@@ -33,36 +23,13 @@ export default {
     },
     methods: {
         login() {
-            var that = this;
-            console.log( mgr.getUser())
-            mgr.getUser().then(function(user) {
-                console.log(user)
-                var url = "http://localhost:8080/identity";
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url);
-                xhr.onload = function() {
-                    that.res = (xhr.status, JSON.parse(xhr.responseText))
-                };
-                xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
-                xhr.send();
-            });
         },
         logout() {
-            mgr.signoutRedirect();
         }
     },
     computed: {},
     created() {},
     mounted() {
-        var that = this;
-        mgr.getUser().then(function(user) {
-            if (user) {
-                // this.res = ("User logged in", user.profile);
-                that.res = ("User logged in", user.profile);
-            } else {
-                that.res = ("User not logged in");
-            }
-        });
     }
 };
 </script>

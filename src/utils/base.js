@@ -1,5 +1,6 @@
 import axios from 'axios'
 import URLS from '@/utils/api'
+import store from '../store'
 import { showLoading, hideLoading } from './loading'
 
 // ajax请求统一增加请求头
@@ -9,6 +10,9 @@ axios.interceptors.request.use(config => {
         //   'Access-Control-Allow-Origin':'*',
         //   'Access-Control-Allow-Headers':'X-Requested-With,Content-Type',
         //   'Access-Control-Allow-Methods':'PUT,POST,GET,DELETE,OPTIONS',
+    }
+    if (store.getters.isIdentityAuth) {
+      config.headers['Authorization'] = 'Bearer ' + store.getters.oidcAccessToken
     }
     showLoading();
     config.timeout = 10000;
