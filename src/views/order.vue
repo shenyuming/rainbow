@@ -45,7 +45,7 @@
                                      </div> -->
                 <div class="hasStatus content">
                     <div class="hasInner" id="hasInner">
-                        {{content}}
+                       {{content}}
                     </div>
                     <img class="copy clipboardBtn" :data-clipboard-text="content" @click="copy" src="../assets/image/copy.png" alt="">
                 </div>
@@ -96,7 +96,7 @@ export default {
             }, {
                 list: ['Footisite', 'Shopify'],
             }, {
-                list: ['US', 'DE', 'AU', 'UK', 'FR'],
+                list: ['us', 'de', 'au', 'uk', 'fr'],
             }, {
                 list: ['2.0', '3.0'],
             }],
@@ -163,6 +163,7 @@ export default {
                     console.log(response)
                     if (response.data.code == '200') {
                        _this.content =  response.data.result;
+                       _this.content =  _this.content.replace(/↵/g,"\n");
                     }else{
                          _this.$message({
                             message: response.data.message
@@ -175,7 +176,7 @@ export default {
         },
         //删除
         deleteInfo() {
-            this.data = '';
+            this.content = '';
             this.$message({
                 message: '清空数据成功~'
             });
@@ -363,6 +364,7 @@ export default {
                 overflow: auto;
                 word-break: break-all;
                 line-height: 20px;
+                white-space: pre-line;
             }
             .copy {
                 float: right;
