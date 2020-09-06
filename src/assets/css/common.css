@@ -6,6 +6,7 @@ fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
 th, td { /* table elements 表格元素 */
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
 /* 设置默认字体 */
