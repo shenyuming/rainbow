@@ -2,7 +2,6 @@
     <div>
         <cloud-component></cloud-component>
         <head-component></head-component>
-        <!-- :formatter="statusFormatter"  -->
         <div class="orderList">
             <div v-if="tableData.length>0">
                 <el-table :data="tableData" :cell-style="{padding:'0px'}" :row-style="{height:'40px'}" style="width:100%" class="bigTable" :header-cell-style="{background:'#ba86ea',color:'#fff'}">
@@ -50,9 +49,6 @@ export default {
         }
     },
     computed: {
-        isShowGenerate() {
-
-        },
     },
     methods: {
         // 状态格式化
