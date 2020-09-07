@@ -57,6 +57,14 @@ export default new Router({
                 title: "RainBow",
                 keepAlive: true
             }
+        }, {
+            path: "/orderList",
+            name: "orderList",
+            component: () => import("@/views/orderList"),
+            meta: {
+                title: "RainBow",
+                keepAlive: true
+            }
         }
     ]
 })

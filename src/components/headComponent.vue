@@ -11,6 +11,7 @@
                 <div v-show="showAll">
                     <p id="item1" class="item" :class="{'active1':isFlag1}" style="margin-left: 140px;" @click="gohome">Product</p>
                     <p id="item2" class="item" :class="{'active2':isFlag2}" @click="goOrder">Orders</p>
+                    <p id="item2" class="item" :class="{'active4':isFlag4}" @click="goGenerate">Generate</p>    
                     <p id="item3" class="item" :class="{'active3':isFlag3}" @click="goSupport">Terms</p>
                     <!-- <p class="item" @click="gologin">My Count</p>
                             <p class="item" @click="goSupport">Support</p> -->
@@ -54,6 +55,11 @@ export default {
                 return true
             }
         },
+        isFlag4(){
+             if (this.$route.path == '/orderList') {
+                return true
+            }
+        }
 
     },
     methods: {
@@ -73,12 +79,15 @@ export default {
         goSupport() {
             this.$router.push({ path: '/about' })
         },
+        goGenerate() {
+            this.$router.push({ path: '/orderList' })
+        },
         openSlid() {
             this.showAll = true;
             this.showSlid = false;
             if (this.showAll) {
                 $('.allInfo').animate({
-                    width: '480px'
+                    width: '580px'
                 }, 1000);
             }
         },
@@ -87,7 +96,7 @@ export default {
             this.showAll = false;
             if (this.showSlid) {
                 $('.allInfo').animate({
-                    width: '-480px'
+                    width: '-580px'
                 }, 1000); //菜单块向左移动
             }
         }
@@ -161,6 +170,9 @@ export default {
         }
         .active3 {
             color: #5bcbf0;
+        }
+        .active4{
+             color: #8fee90;
         }
     }
 }

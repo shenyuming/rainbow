@@ -81,3 +81,17 @@ a{
 input{
     padding: 0 5px;
 }
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #b33bf2;
+    border: 1px solid #b33bf2;
+    color: #fff;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #ba86ea !important;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: #FFF !important;
+}
