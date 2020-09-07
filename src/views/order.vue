@@ -4,48 +4,30 @@
         <head-component></head-component>
         <div class="orderWrap">
             <div class="leftInfo">
-                <div class="commonTab typeWrap" :class="{'cirlcle':flag0}">
-                    <input class="title" v-model="select0" readonly placeholder="TYPE" @click="clickType0()">
-                    <div v-if="flag0">
-                        <div class="type" v-for="(item,index) in selectList[0].list" :key="item">
-                            <p class="typeLi">
-                                <span :class="{'active0': currenIndex0==index}" @click="getEachItem0(item,index)">{{item}}</span>
-                            </p>
-                        </div>
+                <div class="commonTab" :class="[item.classname,{'cirlcle':item.isClick}]" v-for="(item,index) in selectList" :key="index">
+                    <div class="title" @click="clickType(item,index)">{{item.selectStr || item.name}}</div>
+                    <div v-show="item.isClick">      
+                            <template v-if="index<3">
+                                 <div class="type" v-for="(itemlist,indexList) in item.list" :key="indexList">
+                                  <p class="typeLi">
+                                        <span :class="{ 'active':item.currenIndex==indexList }" @click="getEachItem(item,itemlist,indexList)">{{itemlist}}</span>
+                                </p>
+                                 </div>
+                            </template>
+                            <template v-else>          
+                                <input class="number" type="number" v-model="item.selectStr">
+                            </template>                      
                     </div>
                 </div>
-                <div class="commonTab webWrap" :class="{'cirlcle':flag1}">
-                    <input class="title" v-model="select1" readonly placeholder="WEB" @click="clickType1()">
-                    <div v-if="flag1">
-                        <div class="type" v-for="(item,index) in selectList[1].list" :key="item">
-                            <p class="typeLi">
-                                <span :class="{'active1': currenIndex1==index}" @click="getEachItem1(item,index)">{{item}}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="commonTab regionWrap" :class="{'cirlcle':flag2}">
-                    <input class="title" v-model="select2" readonly placeholder="REGION" @click="clickType2()">
-                    <div v-if="flag2">
-                        <div class="type" v-for="(item,index) in selectList[2].list" :key="item">
-                            <p class="typeLi">
-                                <span :class="{'active2': currenIndex2==index}" @click="getEachItem2(item,index)">{{item}}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="commonTab amountWrap" :class="{'cirlcle':flag3}">
-                    <div class="title" @click="clickType3()">AMOUNT</div>
-                    <div v-if="flag3">
-                        <input class="number" type="number" v-model="amount">
-                    </div>
-                </div>
-                <!-- <div class="noStatus content">
-                                             <img class="noStatus" src="../assets/image/rainNo.png" alt="">
-                                     </div> -->
+    
+    
+    
+               <!-- <div class="noStatus content">
+                     <img class="noStatus" src="../assets/image/rainNo.png" alt="">
+                </div> -->
                 <div class="hasStatus content">
                     <div class="hasInner" id="hasInner">
-                       {{content}}
+                        {{content}}
                     </div>
                     <img class="copy clipboardBtn" :data-clipboard-text="content" @click="copy" src="../assets/image/copy.png" alt="">
                 </div>
@@ -59,7 +41,7 @@
                     <p class="name">Remain</p>
                     <p class="detail">{{totalBandWidth-usedBandWidth}}GB</p>
                 </div>
-                <div class="generate greyNot" :class="{'purple':isShowGenerate}" @click="generateForm"> 
+                <div class="generate greyNot" :class="{'purple':isShowGenerate}" @click="generateForm">
                     GENERATE
                 </div>
                 <div class="generate grey" @click="deleteInfo()">
@@ -92,25 +74,38 @@ export default {
     data() {
         return {
             selectList: [{
-                list: ['2.0', '3.0'],
-            }, {
-                list: ['Footisite', 'Shopify'],
-            }, {
-                list: ['us', 'de', 'au', 'uk', 'fr'],
-            }, {
-                list: ['2.0', '3.0'],
-            }],
-            flag0: false,
-            flag1: false,
-            flag2: false,
-            flag3: false,
-            select0: '',
-            select1: '',
-            select2: '',
-            currenIndex0: 0,
-            currenIndex1: 0,
-            currenIndex2: 0,
-            amount: '',
+                    name: 'TYPE',
+                    list: ['2.0', '3.0'],
+                    isClick: false,
+                    classname: 'typeWrap',
+                    selectStr: '',
+                    currenIndex: ''
+                },
+                {
+                    name: 'WEB',
+                    list: ['Footisite', 'Shopify'],
+                    isClick: false,
+                    classname: 'webWrap',
+                    selectStr: '',
+                    currenIndex: ''
+                },
+                {
+                    name: 'Region',
+                    list: ['us', 'de', 'au', 'uk', 'fr'],
+                    isClick: false,
+                    classname: 'regionWrap',
+                    selectStr: '',
+                    currenIndex: ''
+                },
+                {
+                    name: 'AMOUNT',
+                    list: [],
+                    isClick: false,
+                    classname: 'amountWrap',
+                    selectStr: '',
+                    currenIndex: ''
+                }
+            ],
             content: '',
             totalBandWidth: '',
             usedBandWidth: '',
@@ -118,12 +113,31 @@ export default {
     },
     computed: {
         isShowGenerate() {
-            if (this.select0 && this.select1 && this.select2 && this.amount) {
+            if (this.selectList[0].selectStr && this.selectList[1].selectStr && this.selectList[2].selectStr && this.selectList[3].selectStr) {
                 return true
             }
         },
     },
     methods: {
+        //点击切换
+        clickType(item, index) {
+            if (index > 0) {
+                if (this.selectList[index - 1].selectStr) {
+                    item.isClick = !item.isClick;
+                } else {
+                    item.isClick = false
+                }
+            } else {
+                item.isClick = !item.isClick;
+            }
+
+        },
+        //选择item
+        getEachItem(item, itemlist, index) {
+            item.selectStr = itemlist;
+            item.isClick = false;
+            item.currenIndex = index
+        },
         //查询流量
         queryBrand() {
             var _this = this;
@@ -146,26 +160,26 @@ export default {
         generateForm() {
             var _this = this;
             var countryNum;
-            if(_this.select1 == 'Footisite'){
+            if (_this.selectList[1].selectStr == 'Footisite') {
                 countryNum = 2;
-            }else{
+            } else {
                 countryNum = 1;
             }
             _this.$ajax.get(this.URLS.GenerateProxy, {
                     params: {
                         key: store.getters.oidcUser.Key,
-                        country:_this.select2,
-                        num:_this.amount,
-                        poolNum:countryNum
+                        country: _this.selectList[2].selectStr,
+                        num: _this.selectList[3].selectStr,
+                        poolNum: countryNum
                     }
                 })
                 .then(function(response) {
                     console.log(response)
                     if (response.data.code == '200') {
-                       _this.content =  response.data.result;
-                       _this.content =  _this.content.replace(/↵/g,"\n");
-                    }else{
-                         _this.$message({
+                        _this.content = response.data.result;
+                        _this.content = _this.content.replace(/↵/g, "\n");
+                    } else {
+                        _this.$message({
                             message: response.data.message
                         });
                     }
@@ -199,40 +213,8 @@ export default {
                 // 释放内存
                 clipboard.destroy()
             })
-        },
-        clickType0() {
-            this.flag0 = !this.flag0;
-        },
-        getEachItem0(item, index) {
-            this.select0 = item;
-            this.flag0 = false;
-            this.currenIndex0 = index;
-        },
-        clickType1() {
-            if (this.select0) {
-                this.flag1 = !this.flag1
-            }
-        },
-        getEachItem1(item, index) {
-            this.select1 = item;
-            this.flag1 = false;
-            this.currenIndex1 = index;
-        },
-        clickType2() {
-            if (this.select0 && this.select1) {
-                this.flag2 = !this.flag2
-            }
-        },
-        getEachItem2(item, index) {
-            this.select2 = item;
-            this.flag2 = false;
-            this.currenIndex2 = index;
-        },
-        clickType3() {
-            if (this.select0 && this.select1 && this.select2) {
-                this.flag3 = !this.flag3
-            }
-        },
+        }
+
     },
     created() {
         this.queryBrand();
@@ -285,24 +267,6 @@ export default {
             .typeLi {
                 margin: 5px 0;
                 cursor: pointer;
-                .active0 {
-                    background: #cd375a;
-                    display: inline-block;
-                    padding: 0 10px;
-                    border-radius: 10px
-                }
-                .active1 {
-                    background: #d96b3a;
-                    display: inline-block;
-                    padding: 0 10px;
-                    border-radius: 10px
-                }
-                .active2 {
-                    background: #1aacd3;
-                    display: inline-block;
-                    padding: 0 10px;
-                    border-radius: 10px
-                }
             }
         }
         .number {
@@ -322,16 +286,34 @@ export default {
         left: 70px;
         padding: 10px 0px;
         background-color: #ff496f;
+        .active {
+            background: #cd375a;
+            display: inline-block;
+            padding: 0 10px;
+            border-radius: 10px
+        }
     }
     .webWrap {
         left: 320px;
         padding: 10px 5px;
         background-color: #f89c69;
+        .active {
+            background: #d96b3a;
+            display: inline-block;
+            padding: 0 10px;
+            border-radius: 10px
+        }
     }
     .regionWrap {
         left: 450px;
         padding: 10px 10px;
         background-color: #5cc9f0;
+        .active {
+            background: #1aacd3;
+            display: inline-block;
+            padding: 0 10px;
+            border-radius: 10px
+        }
     }
     .amountWrap {
         left: 600px;
@@ -407,7 +389,7 @@ export default {
         }
         .purple {
             background: linear-gradient(to right, #ba86e8, #cba5cc) !important;
-            cursor:pointer !important;
+            cursor: pointer !important;
         }
         .grey {
             background: linear-gradient(to right, #a4a4a2, #cbcbcb);
