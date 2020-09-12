@@ -77,6 +77,7 @@ export default {
             list: [{
                 img: require('../assets/image/icon1.png'),
                 brand: 'RainBow Resi 2.0',
+                title:'',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
                     { name: 'Supreme/Footsite US' },
@@ -96,7 +97,7 @@ export default {
                 showFlag: false
             }, {
                 img: require('../assets/image/icon2.png'),
-                brand: 'RainBow Resi 2.0',
+                brand: 'RainBow Resi 3.0',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
                     { name: 'Supreme/Footsite US' },
@@ -116,7 +117,7 @@ export default {
                 showFlag: false
             }, {
                 img: require('../assets/image/icon3.png'),
-                brand: 'RainBow Resi 2.0',
+                brand: 'RainBow ISP',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
                     { name: 'Supreme/Footsite US' },
