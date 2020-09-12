@@ -4,6 +4,7 @@ const URLS= {
     GenerateProxy:webUrl + '/api/ProxyGenerage/GenerateProxy',
     StripePay:webUrl+'/api/StripePay/Get',
     LoadAll:webUrl + '/api/OrderList/LoadAll',
-    Load:webUrl +'/api/OrderList/Load'
+    Load:webUrl +'/api/OrderList/Load',
+    apply:webUrl +'/api/RainbowPay/Get'
 }
 export default URLS

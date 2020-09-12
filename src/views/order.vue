@@ -413,7 +413,7 @@ export default {
                     color: #5bc9ef;
                     font-size: 16px;
                     font-weight: bold;
-                    width: 100px;
+                    width: 120px;
                     text-align: center;
             }
         }

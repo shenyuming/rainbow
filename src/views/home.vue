@@ -5,26 +5,24 @@
             <head-component></head-component>
             <div class="main">
                 <ul>
-                    <li>
+                    <li v-for="(item,index) in list" :key="index">
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/icon1.png" alt="">
+                                <img :src="item.img" alt="">
                             </div>
-                            <p class="brand">RainBow Resi 2.0</p>
+                            <p class="brand">{{item.brand}}</p>
                             <div class="detail">
                                 <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
-                                <p>Nike/Mesh/Shopify</p>
-                                <p>Supreme/Footsite US</p>
-                                <p>Finishline/JD/Yeezysupply</p>
-                                <p>Shoepalace/Foolocler EU/AU</p>
-                                <p>And More</p>
+                                <div v-for="(iteminfo,idx) in item.detail" :key="idx">
+                                    <p>{{iteminfo.name}}</p>
+                                </div>
                             </div>
                             <div class="holder">
-                                <input class="discount" type="text" placeholder="Discount">
-                                <span class="apply">apply</span>
+                                <input class="discount" v-model="item.discountKey" type="text" placeholder="Discount">
+                                <span class="apply" @click="applyGet(item)">apply</span>
                             </div>
                             <div class="operate">
-                                <div @click="showDetail()">
+                                <div @click="showDetail(index)">
                                     <img classs="size" src="../assets/image/plan.png" alt="">
                                 </div>
                                 <div @click="hrefNewWay">
@@ -32,84 +30,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="info" v-if="showFlag">
-                            <div class="likeUl" v-for="(item,index) in sizeList" :key="index">
-                                <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
+                        <div class="info" v-if="item.showFlag">
+                            <div class="likeUl" v-for="(info,ind) in item.sizeList" :key="ind">
+                                <p :class="{'active': ind === item.activeLinkId}" @click="changeGB(index,ind)">{{info.name}}</p>
                             </div>
                             <div class="nav nav-border"></div>
                             <div class="nav nav-background"></div>
                         </div>
                     </li>
-                    <li>
-                        <div class="inner">
-                            <div class="imgCenter">
-                                <img src="../assets/image/icon3.png" alt="">
-                            </div>
-                            <p class="brand">RainBow Resi 3.0</p>
-                            <div class="detail">
-                                <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
-                                <p>Nike/Mesh/Shopify</p>
-                                <p>Supreme/Footsite US</p>
-                                <p>Finishline/JD/Yeezysupply</p>
-                                <p>Shoepalace/Foolocler EU/AU</p>
-                                <p>And More</p>
-                            </div>
-                            <div class="holder">
-                                <input class="discount" type="text" placeholder="Discount">
-                                <span class="apply">apply</span>
-                            </div>
-                            <div class="operate">
-                                <div @click="showDetail()">
-                                    <img classs="size" src="../assets/image/plan.png" alt="">
-                                </div>
-                                <div @click="hrefNewWay">
-                                    <img class="buy" src="../assets/image/buy.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="info" v-if="showFlag1">
-                            <div class="likeUl" v-for="(item,index) in sizeList1" :key="index">
-                                <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
-                            </div>
-                            <div class="nav nav-border"></div>
-                            <div class="nav nav-background"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <div class="imgCenter">
-                                <img src="../assets/image/icon2.png" alt="">
-                            </div>
-                            <p class="brand">RainBow ISP</p>
-                            <div class="detail">
-                                <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
-                                <p>Nike/Mesh/Shopify</p>
-                                <p>Supreme/Footsite US</p>
-                                <p>Finishline/JD/Yeezysupply</p>
-                                <p>Shoepalace/Foolocler EU/AU</p>
-                                <p>And More</p>
-                            </div>
-                            <div class="holder">
-                                <input class="discount" type="text" placeholder="Discount">
-                                <span class="apply">apply</span>
-                            </div>
-                            <div class="operate">
-                                <div @click="showDetail()">
-                                    <img classs="size" src="../assets/image/plan.png" alt="">
-                                </div>
-                                <div @click="hrefNewWay">
-                                    <img class="buy" src="../assets/image/buy.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="info" v-if="showFlag2">
-                            <div class="likeUl" v-for="(item,index) in sizeList2" :key="index">
-                                <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
-                            </div>
-                            <div class="nav nav-border"></div>
-                            <div class="nav nav-background"></div>
-                        </div>
-                    </li>
+    
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
@@ -117,18 +46,18 @@
                             </div>
                             <p class="brand">Comming soon</p>
                             <div class="detail">
-                               <p>surprise</p>
+                                <p>surprise</p>
                             </div>
                             <div class="operateGrey">
-                                <div @click="showDetail()">
+                                <div>
                                     <img classs="size" src="../assets/image/planGrey.png" alt="">
                                 </div>
-                                <div @click="hrefNewWay">
+                                <div>
                                     <img class="buy" src="../assets/image/buyGrey.png" alt="">
                                 </div>
                             </div>
                         </div>
-                        
+    
                     </li>
                 </ul>
             </div>
@@ -145,33 +74,67 @@ export default {
     name: "home",
     data() {
         return {
-            sizeList: [
-                { name: '5GB-$55', id: 0 },
-                { name: '10GB-$100', id: 1 },
-                { name: '15GB-$135', id: 2 },
-                { name: '20GB-$170', id: 3 },
-                { name: '25GB-$200', id: 4 },
-            ],
-            activeLinkId: 0,
-            showFlag: false,
-            sizeList1: [
-                { name: '5GB-$55', id: 0 },
-                { name: '10GB-$100', id: 1 },
-                { name: '15GB-$135', id: 2 },
-                { name: '20GB-$170', id: 3 },
-                { name: '25GB-$200', id: 4 },
-            ],
-            activeLinkId1: 0,
-            showFlag1: false,
-            sizeList2: [
-                { name: '5GB-$55', id: 0 },
-                { name: '10GB-$100', id: 1 },
-                { name: '15GB-$135', id: 2 },
-                { name: '20GB-$170', id: 3 },
-                { name: '25GB-$200', id: 4 },
-            ],
-            activeLinkId2: 0,
-            showFlag2: false,
+            list: [{
+                img: require('../assets/image/icon1.png'),
+                brand: 'RainBow Resi 2.0',
+                detail: [
+                    { name: 'Nike/Mesh/Shopify' },
+                    { name: 'Supreme/Footsite US' },
+                    { name: 'Finishline/JD/Yeezysupply' },
+                    { name: 'Shoepalace/Foolocler EU/AU' },
+                    { name: 'SAnd More' },
+                    { name: '....' },
+                ],
+                sizeList: [
+                    { name: '5GB-$60', id: 1 },
+                    { name: '10GB-$115', id: 2 },
+                    { name: '15GB-$165', id: 3 },
+                    { name: '20GB-$220', id: 4 },
+                ],
+                activeLinkId: '',
+                discountKey: '',
+                showFlag: false
+            }, {
+                img: require('../assets/image/icon2.png'),
+                brand: 'RainBow Resi 2.0',
+                detail: [
+                    { name: 'Nike/Mesh/Shopify' },
+                    { name: 'Supreme/Footsite US' },
+                    { name: 'Finishline/JD/Yeezysupply' },
+                    { name: 'Shoepalace/Foolocler EU/AU' },
+                    { name: 'SAnd More' },
+                    { name: '....' },
+                ],
+                sizeList: [
+                    { name: '5GB-$60', id: 1 },
+                    { name: '10GB-$115', id: 2 },
+                    { name: '15GB-$165', id: 3 },
+                    { name: '20GB-$220', id: 4 },
+                ],
+                activeLinkId: '',
+                discountKey: '',
+                showFlag: false
+            }, {
+                img: require('../assets/image/icon3.png'),
+                brand: 'RainBow Resi 2.0',
+                detail: [
+                    { name: 'Nike/Mesh/Shopify' },
+                    { name: 'Supreme/Footsite US' },
+                    { name: 'Finishline/JD/Yeezysupply' },
+                    { name: 'Shoepalace/Foolocler EU/AU' },
+                    { name: 'SAnd More' },
+                    { name: '....' },
+                ],
+                sizeList: [
+                    { name: '5GB-$60', id: 1 },
+                    { name: '10GB-$115', id: 2 },
+                    { name: '15GB-$165', id: 3 },
+                    { name: '20GB-$220', id: 4 },
+                ],
+                activeLinkId: '',
+                discountKey: '',
+                showFlag: false
+            }]
         }
     },
     components: {
@@ -179,17 +142,53 @@ export default {
         cloudComponent
     },
     methods: {
-        showDetail() {
-            this.showFlag = !this.showFlag
-        },
-        showDetail1() {
-            this.showFlag1 = !this.showFlag1
-        },
-        showDetail2() {
-            this.showFlag2 = !this.showFlag2
-        },
+
         hrefNewWay() {
             window.location.href = "http://www.proxyrainbow.com/shipping.html"
+        },
+        changeGB(index, idx) {
+            console.log(idx)
+            this.list[index].activeLinkId = idx;
+        },
+        showDetail(index) {
+            this.list[index].showFlag = !this.list[index].showFlag
+        },
+        applyGet(item) {
+            var _this = this;
+            console.log(item.activeLinkId === '')
+            if (item.activeLinkId === '') {
+                _this.$message({
+                    message: 'choose plan'
+                });
+                return
+            }
+            if (item.discountKey === '') {
+                _this.$message({
+                    message: 'please write discountKey'
+                });
+                return
+            }
+           
+            _this.$ajax.get(this.URLS.apply, {
+                    params: {
+                        shopType: item.activeLinkId +1,
+                        discountKey: item.discountKey
+                    }
+                })
+                .then(function(response) {
+                    console.log(response)
+                    if (response.data.code == '200') {
+
+                    } else {
+                        _this.$message({
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+
         }
 
     },
@@ -279,7 +278,7 @@ export default {
                     bottom: 10px;
                     cursor: pointer;
                 }
-                .operateGrey{
+                .operateGrey {
                     display: flex;
                     justify-content: space-between;
                     align-content: center;
@@ -289,7 +288,7 @@ export default {
                 .info {
                     position: absolute;
                     right: 20px;
-                    top: 120px;
+                    top: 160px;
                     width: 100px;
                     width: 100px;
                     padding: 10px 0;
@@ -326,12 +325,11 @@ export default {
                             background-color: #ba86ea;
                             border-radius: 10px;
                             color: #fff;
-                        }
-                        &:hover {
-                            background-color: #ba86ea;
-                            border-radius: 10px;
-                            color: #fff;
-                        }
+                        } // &:hover {
+                        //     background-color: #ba86ea;
+                        //     border-radius: 10px;
+                        //     color: #fff;
+                        // }
                     }
                 }
             }
