@@ -49,8 +49,7 @@
                 </div>
                 <div class="times">
                     <p class="expire">EXPIRE IN</p>
-                    <p class="days"><span class="hours">23</span>DAYS</p>
-                    <p class="hours">24：00</p>
+                    <p class="hours">{{bwExpireDate}}</p>
                 </div>
             </div>
         </div>
@@ -109,6 +108,7 @@ export default {
             content: '',
             totalBandWidth: '',
             usedBandWidth: '',
+            bwExpireDate:''//过期时间
         }
     },
     computed: {
@@ -150,6 +150,7 @@ export default {
                     if (response.data.code == '200') {
                         _this.totalBandWidth = Number(response.data.result.totalBandWidth);
                         _this.usedBandWidth = Number(response.data.result.usedBandWidth);
+                        _this.bwExpireDate = response.data.result.bwExpireDate
                     }
                 })
                 .catch(function(error) {
@@ -409,9 +410,11 @@ export default {
                 line-height: 20px;
             }
             .hours {
-                color: #5bc9ef;
-                font-size: 16px;
-                font-weight: bold;
+                    color: #5bc9ef;
+                    font-size: 16px;
+                    font-weight: bold;
+                    width: 100px;
+                    text-align: center;
             }
         }
     }
