@@ -44,7 +44,7 @@ export default {
         return {
             tableData: [],
             totalOrder: 0,
-            pageSize: 2,
+            pageSize: 10,
             PageIndex: 1
         }
     },

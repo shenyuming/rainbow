@@ -8,101 +8,127 @@
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item1.png" alt="">
+                                <img src="../assets/image/icon1.png" alt="">
                             </div>
-                            <p class="brand">男鞋女鞋夏季透气百搭男士休闲皮鞋2020新款</p>
+                            <p class="brand">RainBow Resi 2.0</p>
                             <div class="detail">
-                                <p>功能: 透气</p>
-                                <p>闭合方式: 系带</p>
-                                <p>风格: 休闲</p>
-                                <p>流行元素: 素面</p>
-                                <p>鞋跟高: 平跟</p>
-                                <p>季节: 夏季</p>
+                                <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
+                                <p>Nike/Mesh/Shopify</p>
+                                <p>Supreme/Footsite US</p>
+                                <p>Finishline/JD/Yeezysupply</p>
+                                <p>Shoepalace/Foolocler EU/AU</p>
+                                <p>And More</p>
                             </div>
-                            <div class="price">
-                                80 usd
-                            </div>
-                            <div class="subInfo">
-                                <p>货号: ZT-9151</p>
-                                <p>图案: 纯色</p>
-                                <p>低帮鞋品名: 休闲皮鞋</p>
+                            <div class="holder">
+                                <input class="discount" type="text" placeholder="Discount">
+                                <span class="apply">apply</span>
                             </div>
                             <div class="operate">
-                                <img @click="showDetail()" classs="size" src="../assets/image/size.png" alt="">
-                                <img  @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
+                                <div @click="showDetail()">
+                                    <img classs="size" src="../assets/image/plan.png" alt="">
+                                </div>
+                                <div @click="hrefNewWay">
+                                    <img class="buy" src="../assets/image/buy.png" alt="">
+                                </div>
                             </div>
                         </div>
-                        <div class="size" v-if="showFlag">
+                        <div class="info" v-if="showFlag">
                             <div class="likeUl" v-for="(item,index) in sizeList" :key="index">
                                 <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
                             </div>
+                            <div class="nav nav-border"></div>
+                            <div class="nav nav-background"></div>
                         </div>
                     </li>
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item2.png" alt="">
+                                <img src="../assets/image/icon3.png" alt="">
                             </div>
-                            <p class="brand">内增高鞋女鞋男鞋6cm女士男士小白鞋真皮潮流百搭男潮鞋增高休闲板鞋</p>
+                            <p class="brand">RainBow Resi 3.0</p>
                             <div class="detail">
-                                <p>功能: 轻质</p>
-                                <p>闭合方式: 系带</p>
-                                <p>图案: 拼色</p>
-                                <p>风格: 青春潮流</p>
-                                <p>流行元素: 车缝线</p>
-                                <p>鞋跟高: 低跟</p>
+                                <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
+                                <p>Nike/Mesh/Shopify</p>
+                                <p>Supreme/Footsite US</p>
+                                <p>Finishline/JD/Yeezysupply</p>
+                                <p>Shoepalace/Foolocler EU/AU</p>
+                                <p>And More</p>
                             </div>
-                            <div class="price">
-                                120 usd
-                            </div>
-                            <div class="subInfo">
-                                <p>货号: 0830705-2XA</p>
-                                <p>低帮鞋品名: 板鞋</p>
-                                <p>季节: 春秋</p>
+                            <div class="holder">
+                                <input class="discount" type="text" placeholder="Discount">
+                                <span class="apply">apply</span>
                             </div>
                             <div class="operate">
-                                <img @mouseover="showDetail1()" classs="size" src="../assets/image/size.png" alt="">
-                                <img @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
-                            </div>
-                            <div class="size" v-if="showFlag1">
-                                <div class="likeUl" v-for="(item,index) in sizeList1" :key="index">
-                                    <p :class="{'active': index == activeLinkId1}">{{item.name}}</p>
+                                <div @click="showDetail()">
+                                    <img classs="size" src="../assets/image/plan.png" alt="">
+                                </div>
+                                <div @click="hrefNewWay">
+                                    <img class="buy" src="../assets/image/buy.png" alt="">
                                 </div>
                             </div>
+                        </div>
+                        <div class="info" v-if="showFlag1">
+                            <div class="likeUl" v-for="(item,index) in sizeList1" :key="index">
+                                <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
+                            </div>
+                            <div class="nav nav-border"></div>
+                            <div class="nav nav-background"></div>
                         </div>
                     </li>
                     <li>
                         <div class="inner">
                             <div class="imgCenter">
-                                <img src="../assets/image/item3.png" alt="">
+                                <img src="../assets/image/icon2.png" alt="">
                             </div>
-                            <p class="brand">ADIDAS CONSORTIUM X HUMAN MADE CAMPUS</p>
+                            <p class="brand">RainBow ISP</p>
                             <div class="detail">
-                                <p>功能:透气</p>
-                                <p>闭合方式: 系带</p>
-                                <p>图案: 纯色</p>
-                                <p>风格:休闲</p>
-                                <p>流行元素: 车缝线</p>
-                                <p>鞋跟高: 低跟</p>
+                                <p style="font-size:14px;color:#6a6a6a">Support sites:</p>
+                                <p>Nike/Mesh/Shopify</p>
+                                <p>Supreme/Footsite US</p>
+                                <p>Finishline/JD/Yeezysupply</p>
+                                <p>Shoepalace/Foolocler EU/AU</p>
+                                <p>And More</p>
                             </div>
-                             <div class="price">
-                                150 usd
-                            </div>
-                            <div class="subInfo">
-                                <p>货号: 7977</p>
-                                <p>低帮鞋品名: 休闲皮鞋</p>
-                                <p>季节: 春秋</p>
+                            <div class="holder">
+                                <input class="discount" type="text" placeholder="Discount">
+                                <span class="apply">apply</span>
                             </div>
                             <div class="operate">
-                                <img @mouseover="showDetail2()" classs="size" src="../assets/image/size.png" alt="">
-                                <img  @click="hrefNewWay" class="buy" src="../assets/image/buy.png" alt="">
-                            </div>
-                            <div class="size" v-if="showFlag2">
-                                <div class="likeUl" v-for="(item,index) in sizeList2" :key="index">
-                                    <p :class="{'active': index == activeLinkId2}">{{item.name}}</p>
+                                <div @click="showDetail()">
+                                    <img classs="size" src="../assets/image/plan.png" alt="">
+                                </div>
+                                <div @click="hrefNewWay">
+                                    <img class="buy" src="../assets/image/buy.png" alt="">
                                 </div>
                             </div>
                         </div>
+                        <div class="info" v-if="showFlag2">
+                            <div class="likeUl" v-for="(item,index) in sizeList2" :key="index">
+                                <p :class="{'active': index == activeLinkId}">{{item.name}}</p>
+                            </div>
+                            <div class="nav nav-border"></div>
+                            <div class="nav nav-background"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            <div class="imgCenter">
+                                <img src="../assets/image/icon4.png" alt="">
+                            </div>
+                            <p class="brand">Comming soon</p>
+                            <div class="detail">
+                               <p>surprise</p>
+                            </div>
+                            <div class="operateGrey">
+                                <div @click="showDetail()">
+                                    <img classs="size" src="../assets/image/planGrey.png" alt="">
+                                </div>
+                                <div @click="hrefNewWay">
+                                    <img class="buy" src="../assets/image/buyGrey.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        
                     </li>
                 </ul>
             </div>
@@ -120,66 +146,29 @@ export default {
     data() {
         return {
             sizeList: [
-                { name: 35.5, id: 0 },
-                { name: 36, id: 1 },
-                { name: 36.5, id: 2 },
-                { name: 37, id: 3 },
-                { name: 37.5, id: 4 },
-                { name: 38, id: 5 },
-                { name: 38.5, id: 6 },
-                { name: 39, id: 7 },
-                { name: 39.5, id: 8 },
-                { name: 40, id: 9 },
-                { name: 41, id: 10 },
-                { name: 42, id: 11 },
-                { name: 43, id: 12 },
-                { name: 44, id: 13 },
-                { name: 45, id: 14 }
+                { name: '5GB-$55', id: 0 },
+                { name: '10GB-$100', id: 1 },
+                { name: '15GB-$135', id: 2 },
+                { name: '20GB-$170', id: 3 },
+                { name: '25GB-$200', id: 4 },
             ],
             activeLinkId: 0,
             showFlag: false,
             sizeList1: [
-                { name: 35.5, id: 0 },
-                { name: 36, id: 1 },
-                { name: 36.5, id: 2 },
-                { name: 37, id: 3 },
-                { name: 37.5, id: 4 },
-                { name: 38, id: 5 },
-                { name: 38.5, id: 6 },
-                { name: 39, id: 7 },
-                { name: 39.5, id: 8 },
-                { name: 40, id: 9 },
-                { name: 41, id: 10 },
-                { name: 42, id: 11 },
-                { name: 43, id: 12 },
-                { name: 44, id: 13 },
-                { name: 45, id: 14 },
-                { name: 46, id: 15 },
-                { name: 47, id: 16 },
-                { name: 48, id: 17 },
-                { name: 49, id: 18 }
+                { name: '5GB-$55', id: 0 },
+                { name: '10GB-$100', id: 1 },
+                { name: '15GB-$135', id: 2 },
+                { name: '20GB-$170', id: 3 },
+                { name: '25GB-$200', id: 4 },
             ],
             activeLinkId1: 0,
             showFlag1: false,
             sizeList2: [
-                { name: 35.5, id: 0 },
-                { name: 36, id: 1 },
-                { name: 37, id: 2 },
-                { name: 37.5, id: 3 },
-                { name: 38, id: 4 },
-                { name: 39, id: 5 },
-                { name: 39.5, id: 6 },
-                { name: 40, id: 7 },
-                { name: 40.5, id: 8 },
-                { name: 41, id: 9 },
-                { name: 42, id: 10 },
-                { name: 43, id: 11 },
-                { name: 43.5, id: 12 },
-                { name: 44.5, id: 13 },
-                { name: 45, id: 14 },
-                { name: 46, id: 15 },
-                { name: 46.5, id: 16 },
-                { name: 47, id: 17 }
+                { name: '5GB-$55', id: 0 },
+                { name: '10GB-$100', id: 1 },
+                { name: '15GB-$135', id: 2 },
+                { name: '20GB-$170', id: 3 },
+                { name: '25GB-$200', id: 4 },
             ],
             activeLinkId2: 0,
             showFlag2: false,
@@ -199,8 +188,8 @@ export default {
         showDetail2() {
             this.showFlag2 = !this.showFlag2
         },
-        hrefNewWay(){
-            window.location.href="http://www.proxyrainbow.com/shipping.html"
+        hrefNewWay() {
+            window.location.href = "http://www.proxyrainbow.com/shipping.html"
         }
 
     },
@@ -216,7 +205,7 @@ export default {
 <style lang="scss" scoped>
 .homeWrap {
     .main {
-        width: 1060px;
+        width: 1200px;
         margin: 0 auto;
         ul {
             display: flex;
@@ -224,24 +213,22 @@ export default {
             li {
                 background-color: #f5fbfe;
                 border-radius: 20px;
-                padding: 25px 25px 0px 25px;
-                width: 280px;
+                padding: 20px 15px 20px 15px;
+                width: 250px;
                 position: relative;
+                overflow: hidden;
                 .inner {
-                    background: linear-gradient(#fefdeb, #fcfdef);
+                    // background: linear-gradient(#fefdeb, #fcfdef);
                 }
                 .imgCenter {
-                    text-align: center;
-                    background-color: #fff;
+                    text-align: center; // background-color: #fff;
                     img {
-                        width: 240px;
-                        height: 240px;
+                        width: 220px; // height: 108px;
                     }
                 }
                 .brand {
-                  padding: 10px 0;
-                  margin: 0 20px;
-                  height: 40px;
+                    padding: 10px 0;
+                    margin: 0 20px;
                     font-weight: bold;
                     color: #6a6a6a;
                     font-size: 20px;
@@ -252,15 +239,30 @@ export default {
                     -webkit-line-clamp: 2;
                 }
                 .detail {
-                    height: 150px;
+                    height: 130px;
                     p {
                         color: #babbb4;
                         padding: 0 20px;
                         font-size: 12px;
+                        line-height: 18px;
                     }
                 }
-                .price{
-                    color:red;
+                .holder {
+                    margin-top: 30px;
+                    .discount {
+                        border: 1px solid #8c8c8b;
+                        border-radius: 10px;
+                        padding: 0 10px;
+                        width: 80px;
+                    }
+                    .apply {
+                        color: #6a6a6a;
+                        cursor: pointer;
+                        font-weight: bold;
+                    }
+                }
+                .price {
+                    color: red;
                     padding-left: 30px;
                     font-size: 18px;
                 }
@@ -272,62 +274,63 @@ export default {
                     }
                 }
                 .operate {
+                    position: absolute;
+                    right: 25px;
+                    bottom: 10px;
+                    cursor: pointer;
+                }
+                .operateGrey{
                     display: flex;
                     justify-content: space-between;
-                    padding: 10px;
-                    img {
-                        cursor: pointer;
-                    }
+                    align-content: center;
+                    margin-top: 27px;
+                    cursor: pointer;
                 }
-                .size {
+                .info {
                     position: absolute;
-                    bottom: 90px;
-                    left: 50px;
-                    background: url('../assets/image/sizeBor.png') no-repeat;
-                    width: 167px;
-                    background-size: 100%;
-                    height: 167px;
-                    display: flex;
-                    justify-content: flex-start;
-                    flex-wrap: wrap;
-                    padding: 10px;
-                    .likeUl {
-                        p {
-                            color: #6d6d6d;
-                            background-color: #fff;
-                            width: 28px;
-                            height: 28px;
-                            line-height: 28px;
-                            text-align: center;
-                            border-radius: 28px;
-                            cursor: pointer;
-                            margin: 0 5px;
-                            position: relative;
-                            font-size: 12px;
-                            &::before {
-                                content: '';
-                                position: absolute;
-                                top: 22px;
-                                left: 6px;
-                                width: 15px;
-                                height: 1px;
-                                background-color: #6d6d6d;
-                            }
-                            &:active {
-                                color: #fff;
-                                background-color: #ba86ea;
-                            }
-                            &:hover {
-                                color: #fff;
-                                background-color: #ba86ea;
-                            }
-                        }
-                        .active {
-                            color: #fff;
+                    right: 20px;
+                    top: 120px;
+                    width: 100px;
+                    width: 100px;
+                    padding: 10px 0;
+                    line-height: 25px;
+                    background: #fff;
+                    -webkit-box-shadow: 1px 2px 3px #E9D985;
+                    box-shadow: 1px 2px 3px #d1d1d1;
+                    border-radius: 4px;
+                    text-align: center;
+                    color: #929292;
+                }
+                .nav {
+                    position: absolute;
+                    left: 30px;
+                    overflow: hidden;
+                    width: 0;
+                    height: 0;
+                    border-width: 10px;
+                    border-style: solid dashed dashed dashed;
+                }
+                .nav-border {
+                    bottom: -20px;
+                    border-color: #d1d1d1 transparent transparent transparent;
+                }
+                .nav-background {
+                    bottom: -19px;
+                    border-color: #fff transparent transparent transparent;
+                }
+                .likeUl {
+                    padding: 3px 10px;
+                    cursor: pointer;
+                    p {
+                        &.active {
                             background-color: #ba86ea;
-                            &::before {
-                                background-color: #fff;
-                            }
+                            border-radius: 10px;
+                            color: #fff;
+                        }
+                        &:hover {
+                            background-color: #ba86ea;
+                            border-radius: 10px;
+                            color: #fff;
                         }
                     }
                 }
