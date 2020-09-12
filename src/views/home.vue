@@ -148,7 +148,6 @@ export default {
             window.location.href = "http://www.proxyrainbow.com/shipping.html"
         },
         changeGB(index, idx) {
-            console.log(idx)
             this.list[index].activeLinkId = idx;
         },
         showDetail(index) {
@@ -156,7 +155,6 @@ export default {
         },
         applyGet(item) {
             var _this = this;
-            console.log(item.activeLinkId === '')
             if (item.activeLinkId === '') {
                 _this.$message({
                     message: 'choose plan'
