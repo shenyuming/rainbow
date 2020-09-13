@@ -101,7 +101,7 @@ export default {
                 discountKey: '',
                 showFlag: false
             }, {
-                img: require('../assets/image/icon2.png'),
+                img: require('../assets/image/icon3.png'),
                 brand: 'RainBow Resi 3.0',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
@@ -121,7 +121,7 @@ export default {
                 discountKey: '',
                 showFlag: false
             }, {
-                img: require('../assets/image/icon3.png'),
+                img: require('../assets/image/icon2.png'),
                 brand: 'RainBow ISP',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
