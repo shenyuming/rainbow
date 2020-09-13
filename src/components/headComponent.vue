@@ -46,7 +46,7 @@ export default {
             }
         },
         isFlag2() {
-            if (this.$route.path == '/order') {
+            if (this.$route.path == '/orderList') {
                 return true
             }
         },
@@ -56,7 +56,7 @@ export default {
             }
         },
         isFlag4(){
-             if (this.$route.path == '/orderList') {
+             if (this.$route.path == '/order') {
                 return true
             }
         }
@@ -74,20 +74,21 @@ export default {
             this.$router.push({ path: '/home' })
         },
         goOrder() {
-            this.$router.push({ path: '/order' })
+            this.$router.push({ path: '/orderList' })
+           
         },
         goSupport() {
             this.$router.push({ path: '/about' })
         },
         goGenerate() {
-            this.$router.push({ path: '/orderList' })
+            this.$router.push({ path: '/order' })
         },
         openSlid() {
             this.showAll = true;
             this.showSlid = false;
             if (this.showAll) {
                 $('.allInfo').animate({
-                    width: '580px'
+                    width: '620px'
                 }, 1000);
             }
         },
@@ -96,7 +97,7 @@ export default {
             this.showAll = false;
             if (this.showSlid) {
                 $('.allInfo').animate({
-                    width: '-580px'
+                    width: '-620px'
                 }, 1000); //菜单块向左移动
             }
         }
