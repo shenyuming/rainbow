@@ -21,11 +21,14 @@
                                 <input class="discount" v-model="item.discountKey" type="text" placeholder="Discount">
                                 <span class="apply" @click="applyGet(item)">apply</span>
                             </div>
+                            <div class="price">
+                               {{item.finalPrice | formatPrice}}
+                            </div>
                             <div class="operate">
                                 <div @click="showDetail(index)">
                                     <img classs="size" src="../assets/image/plan.png" alt="">
                                 </div>
-                                <div @click="hrefNewWay">
+                                <div @click="buy(item)">
                                     <img class="buy" src="../assets/image/buy.png" alt="">
                                 </div>
                             </div>
@@ -70,6 +73,8 @@
 import headComponent from '@/components/headComponent'
 import cloudComponent from '@/components/cloudComponent'
 import Utils from "@/utils/util"
+import { loadStripe } from '@stripe/stripe-js';
+
 export default {
     name: "home",
     data() {
@@ -77,7 +82,7 @@ export default {
             list: [{
                 img: require('../assets/image/icon1.png'),
                 brand: 'RainBow Resi 2.0',
-                title:'',
+                title: '',
                 detail: [
                     { name: 'Nike/Mesh/Shopify' },
                     { name: 'Supreme/Footsite US' },
@@ -135,17 +140,68 @@ export default {
                 activeLinkId: '',
                 discountKey: '',
                 showFlag: false
-            }]
+            }],
+            successUrl: '',
+            cancelUrl: '',
+            checkoutSessionid: ''
         }
     },
     components: {
         headComponent,
         cloudComponent
     },
+    filters:{
+     formatPrice(price){
+       return price ? `Trade Price: $${price}` : ''
+     }
+    },
     methods: {
+        buy(item) {
+            var _this = this;
+            if (item.discountKey) {
+                _this.stripeFunc();
+            } else {
+                _this.$ajax.get(this.URLS.apply, {
+                        params: {
+                            shopType: item.activeLinkId + 1,
+                            discountKey: ''
+                        }
+                    })
+                    .then(function(response) {
+                        console.log(response)
+                        if (response.data.code == '200') {
+                            _this.checkoutSessionid = response.data.result.checkoutSessionid
+                            _this.stripeFunc();
 
-        hrefNewWay() {
-            window.location.href = "http://www.proxyrainbow.com/shipping.html"
+
+                        } else {
+                            _this.$message({
+                                message: response.data.message
+                            });
+                        }
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    })
+            }
+
+
+        },
+        async stripeFunc() {
+            var _this = this;
+            const stripe = await loadStripe('pk_live_51HMu4CK7JUCEXS5aHhHm4lFmN7Y9N4RKyJJKfiGufSjF23zm8zm2s0KCTPcctJITFmziqntXRj3BjZzKaaOVxzBN00gxVPlrkh');
+            stripe.redirectToCheckout({ sessionId: _this.checkoutSessionid })
+                .then(function(result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, you should display the localized error message to your
+                    // customer using `error.message`.
+                    if (result.error) {
+                        console.warn(result.error.message);
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
         },
         changeGB(index, idx) {
             this.list[index].activeLinkId = idx;
@@ -167,24 +223,29 @@ export default {
                 });
                 return
             }
-           
+
             _this.$ajax.get(this.URLS.apply, {
                     params: {
-                        shopType: item.activeLinkId +1,
+                        shopType: item.activeLinkId + 1,
                         discountKey: item.discountKey
                     }
                 })
                 .then(function(response) {
-                    console.log(response)
                     if (response.data.code == '200') {
+                   
+                        _this.checkoutSessionid = response.data.result.checkoutSessionid
+                        _this.price = response.data.result.price
+                        _this.$set(item,'finalPrice',_this.price)
 
                     } else {
+                        item.discountKey = ''
                         _this.$message({
                             message: response.data.message
                         });
                     }
                 })
                 .catch(function(error) {
+                    item.discountKey = ''
                     console.log(error);
                 })
 
@@ -260,9 +321,9 @@ export default {
                     }
                 }
                 .price {
-                    color: red;
-                    padding-left: 30px;
-                    font-size: 18px;
+                    margin-top: 5px;
+                    color: #6a6a6a;
+                    font-size: 14px;
                 }
                 .subInfo {
                     margin: 10px 0;
