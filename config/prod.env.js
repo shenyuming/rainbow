@@ -1,14 +1,14 @@
 'use strict'
 module.exports = {
   OIDC: {
-    authority: '"https://www.proxyrainbow.com/oidc"',
+    authority: '"https://www.proxyrainbow.com"',
     clientId: '"Rainbow.Pro"',
-    redirectUri: '"http://localhost:8080/#/oidc-callback"',
-    postLogoutRedirectUri:'"http://localhost:8080"',
+    redirectUri: '"https://www.proxyrainbow.com/#/oidc-callback"',
+    postLogoutRedirectUri:'"https://www.proxyrainbow.com"',
     responseType: '"code"',
     scope: '"openid profile Tgeapi"',
     automaticSilentRenew: true,
-    silentRedirectUri: '"http://localhost:8080/silent-renew-oidc.html"'
+    silentRedirectUri: '"https://www.proxyrainbow.com/silent-renew-oidc.html"'
   },
   NODE_ENV: '"production"',
   BASE_API:'"https://www.proxyrainbow.com"',
