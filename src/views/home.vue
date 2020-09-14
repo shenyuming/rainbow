@@ -22,14 +22,22 @@
                                 <span class="apply" @click="applyGet(item)">apply</span>
                             </div>
                             <div class="price">
-                               {{item.finalPrice | formatPrice}}
+                                {{item.finalPrice | formatPrice}}
                             </div>
-                            <div class="operate">
+                            <div class="operate" v-if="index==0">
                                 <div @click="showDetail(index)">
                                     <img classs="size" src="../assets/image/plan.png" alt="">
                                 </div>
                                 <div @click="buy(item)">
                                     <img class="buy" src="../assets/image/buy.png" alt="">
+                                </div>
+                            </div>
+                            <div class="operate" v-else>
+                                <div>
+                                    <img classs="size" src="../assets/image/planGrey.png" alt="">
+                                </div>
+                                <div>
+                                    <img class="buy" src="../assets/image/buyGrey.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -150,10 +158,10 @@ export default {
         headComponent,
         cloudComponent
     },
-    filters:{
-     formatPrice(price){
-       return price ? `Trade Price: $${price}` : ''
-     }
+    filters: {
+        formatPrice(price) {
+            return price ? `Trade Price: $${price}` : ''
+        }
     },
     methods: {
         buy(item) {
@@ -232,10 +240,10 @@ export default {
                 })
                 .then(function(response) {
                     if (response.data.code == '200') {
-                   
+
                         _this.checkoutSessionid = response.data.result.checkoutSessionid
                         _this.price = response.data.result.price
-                        _this.$set(item,'finalPrice',_this.price)
+                        _this.$set(item, 'finalPrice', _this.price)
 
                     } else {
                         item.discountKey = ''

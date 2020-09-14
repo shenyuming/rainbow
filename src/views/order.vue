@@ -19,9 +19,6 @@
                             </template>                      
                     </div>
                 </div>
-    
-    
-    
                <!-- <div class="noStatus content">
                      <img class="noStatus" src="../assets/image/rainNo.png" alt="">
                 </div> -->
@@ -39,7 +36,7 @@
                     <p class="name">Used</p>
                     <p class="detail">{{usedBandWidth}}GB</p>
                     <p class="name">Remain</p>
-                    <p class="detail">{{totalBandWidth-usedBandWidth}}GB</p>
+                    <p class="detail">{{leftBrandWidth}}GB</p>
                 </div>
                 <div class="generate greyNot" :class="{'purple':isShowGenerate}" @click="generateForm">
                     GENERATE
@@ -108,6 +105,7 @@ export default {
             content: '',
             totalBandWidth: '',
             usedBandWidth: '',
+            leftBrandWidth:'',
             bwExpireDate:''//过期时间
         }
     },
@@ -148,8 +146,12 @@ export default {
                 })
                 .then(function(response) {
                     if (response.data.code == '200') {
-                        _this.totalBandWidth = Number(response.data.result.totalBandWidth);
-                        _this.usedBandWidth = Number(response.data.result.usedBandWidth);
+                        _this.totalBandWidth = Number(response.data.result.totalBandWidth);                      
+                        _this.usedBandWidth = Number(response.data.result.usedBandWidth)
+                        _this.leftBrandWidth =  Number(response.data.result.totalBandWidth - response.data.result.usedBandWidth)
+                        _this.leftBrandWidth = _this.leftBrandWidth/1000000000       
+                        _this.totalBandWidth = Math.ceil(_this.totalBandWidth/1000000000)
+                        _this.usedBandWidth = _this.usedBandWidth/1000000000       
                         _this.bwExpireDate = response.data.result.bwExpireDate
                     }
                 })
@@ -362,11 +364,12 @@ export default {
         margin-right: 80px;
         margin-top: 20px;
         .top {
-            padding: 40px 30px;
-            color: #6d6d6e;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            text-align: center;
+           padding: 40px 20px;
+        color: #6d6d6e;
+        background-color: rgba(255,255,255,0.7);
+        border-radius: 10px;
+        text-align: center;
+        width: 90px;
             .name {
                 font-size: 16px;
                 font-weight: bold;
@@ -374,6 +377,7 @@ export default {
             .detail {
                 font-size: 14px;
                 margin-bottom: 15px;
+                word-break: break-all;
             }
         }
         .generate {
