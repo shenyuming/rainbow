@@ -677,7 +677,7 @@ export default {
         padding: 10px 0px;
         background-color: #ff496f;
          max-height: 200px;
-        overflow-y: scroll;
+        overflow-y: auto;
         .active {
             background: #cd375a;
             display: inline-block;
