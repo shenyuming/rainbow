@@ -446,11 +446,10 @@ export default {
                             ]
                         }
                     ],
-                },
-                {
+                },{ 
                     name: '3.0',
                     list: [],
-                    selectStr: '',
+                    selectStr: ''
                 }
             ],
             selectList: [{
@@ -517,12 +516,14 @@ export default {
         getEachItem(item,index,index1,item1) {
             item.selectIndex = index1
             if(index==0){
-               this.list2 = this.mainData[index].list
+               this.list2 = this.mainData[index].list              
             }
             if(index==1){
+                this.tab[index+1].selectStr =''
                 this.list3 = this.list2[index1].list
             }
             item.selectStr= item1.name
+            console.log(item.selectStr)
             item.isClick = !item.isClick
         },
         //查询流量
@@ -557,7 +558,7 @@ export default {
                         key: store.getters.oidcUser.Key,
                         country: _this.tab[2].selectStr,
                         num: _this.tab[3].selectStr,
-                        poolNum: _this.tab[1].selectStr,
+                        webName: _this.tab[1].selectStr,
                     }
                 })
                 .then(function(response) {
