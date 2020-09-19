@@ -4,24 +4,35 @@
         <head-component></head-component>
         <div class="orderWrap">
             <div class="leftInfo">
-                <div class="commonTab" :class="[item.classname,{'cirlcle':item.isClick}]" v-for="(item,index) in selectList" :key="index">
-                    <div class="title" @click="clickType(item,index)">{{item.selectStr || item.name}}</div>
-                    <div v-show="item.isClick">      
-                            <template v-if="index<3">
-                                 <div class="type" v-for="(itemlist,indexList) in item.list" :key="indexList">
-                                  <p class="typeLi">
-                                        <span :class="{ 'active':item.currenIndex==indexList }" @click="getEachItem(item,itemlist,indexList)">{{itemlist}}</span>
-                                </p>
-                                 </div>
-                            </template>
-                            <template v-else>          
-                                <input class="number" type="number" v-model="item.selectStr">
-                            </template>                      
+                <div class="commonTab" :class="[item.classname,{'cirlcle':item.isClick}]" v-for="(item, index) in tab" :key="item.name">
+                    <div class="title" @click="clickType(item, index)">{{ item.selectStr || item.name }}</div>
+                    <div v-show="item.isClick">
+                        <div v-show="item.classname==='typeWrap'">
+                            <div class="type" v-for="(item1,index1) in list1" :key="index1">
+                            <p class="typeLi">
+                                <span @click="getEachItem(item,index,index1,item1)">{{ item1.name }}</span>
+                            </p>
+                            </div>
+                        </div>
+                         <div v-show="item.classname==='webWrap'">
+                            <div class="type" v-for="(item2,index2) in list2" :key="index2">
+                            <p class="typeLi">
+                                <span @click="getEachItem(item,index,index2,item2)">{{ item2.name }}</span>
+                            </p>
+                            </div>
+                        </div>
+                         <div v-show="item.classname==='regionWrap'">
+                            <div class="type" v-for="(item3,index3) in list3" :key="index3">
+                            <p class="typeLi">
+                                <span @click="getEachItem(item,index,index3,item3)">{{ item3.name }}</span>
+                            </p>
+                            </div>
+                        </div>
+                         <div v-show="item.classname==='amountWrap'">
+                             <input class="number" type="number" v-model="item.selectStr">
+                        </div>
                     </div>
                 </div>
-               <!-- <div class="noStatus content">
-                     <img class="noStatus" src="../assets/image/rainNo.png" alt="">
-                </div> -->
                 <div class="hasStatus content">
                     <div class="hasInner" id="hasInner">
                         {{content}}
@@ -69,6 +80,379 @@ export default {
     },
     data() {
         return {
+            tab: [
+                {
+                    name: 'TYPE',
+                    classname: 'typeWrap',
+                    isClick: false,
+                    selectStr: '',
+                    selectIndex:''
+                },
+                {
+                    name: 'WEB',
+                    classname: 'webWrap',
+                    isClick: false,
+                    selectStr: '',
+                    selectIndex:''
+                },
+                {
+                    name: 'REGION',
+                    classname: 'regionWrap',
+                    isClick: false,
+                    selectStr: '',
+                    selectIndex:''
+                },
+                {
+                    name: 'AMOUNT',
+                    classname: 'amountWrap',
+                    isClick: false,
+                    selectStr: '',
+                    selectIndex:''
+                },
+            ],
+            list1: [],
+            list2: [],
+            list3: [],
+            mainData: [
+                {
+                    name: '2.0',
+                    list: [
+                        {
+                            name: 'Footlocker ASIA',
+                            list: [
+                                {
+                                    name: 'hk'
+                                },
+                                {
+                                    name: 'au'
+                                },
+                                {
+                                    name: 'sg'
+                                },
+                            ]
+                        },
+                        {
+                            name: 'Footlocker EU',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'de'
+                                },
+                                {
+                                    name: 'fr'
+                                },
+                                {
+                                    name: 'nl'
+                                },
+                                {
+                                    name: 'it'
+                                },
+                                {
+                                    name: 'cz'
+                                },
+                                {
+                                    name: 'lu'
+                                },
+                                {
+                                    name: 'be'
+                                },
+                                {
+                                    name: 'es'
+                                },
+                                {
+                                    name: 'dk'
+                                },
+                                {
+                                    name: 'se'
+                                },
+                                {
+                                    name: 'at'
+                                },
+                                {
+                                    name: 'gr'
+                                },
+                                {
+                                    name: 'hu'
+                                },
+                                {
+                                    name: 'ie'
+                                },
+                                {
+                                    name: 'pl'
+                                },
+                                {
+                                    name: 'pt'
+                                }
+                            ]
+                        },
+                        {
+                            name: 'Mesh',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'de'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Offspring',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'de'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Supreme',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'de'
+                                },{
+                                    name: 'us'
+                                },
+                                {
+                                    name: 'ca'
+                                },{
+                                    name: 'jp'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Shopify',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Yeezysupply',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Mesh',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'de'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Footsite',
+                            list: [
+                                {
+                                    name: 'us'
+                                },
+                                {
+                                    name: 'ca'
+                                }
+                            ]
+                        }, 
+                        {
+                            name: 'Shoepalace',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Finishline',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Hibbet',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Footsite',
+                            list: [
+                                {
+                                    name: 'us'
+                                },
+                                {
+                                    name: 'ca'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'JD sports',
+                            list: [
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'NIKE/SNKRS',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'us'
+                                },{
+                                    name: 'ca'
+                                },
+                                {
+                                    name: 'hk'
+                                },{
+                                    name: 'au'
+                                },
+                                {
+                                    name: 'sg'
+                                },{
+                                    name: 'de'
+                                },
+                                {
+                                    name: 'fr'
+                                },{
+                                    name: 'nl'
+                                },
+                                {
+                                    name: 'it'
+                                },{
+                                    name: 'cz'
+                                },
+                                {
+                                    name: 'lu'
+                                },{
+                                    name: 'be'
+                                },
+                                {
+                                    name: 'es'
+                                },{
+                                    name: 'dk'
+                                },
+                                {
+                                    name: 'se'
+                                },{
+                                    name: 'at'
+                                },
+                                {
+                                    name: 'gr'
+                                },{
+                                    name: 'hu'
+                                },
+                                {
+                                    name: 'ie'
+                                },{
+                                    name: 'pl'
+                                },
+                                {
+                                    name: 'pt'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Adidas',
+                            list: [
+                               {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'us'
+                                },{
+                                    name: 'ca'
+                                },
+                                {
+                                    name: 'hk'
+                                },
+                                {
+                                    name: 'jp'
+                                },
+                                {
+                                    name: 'au'
+                                },
+                                {
+                                    name: 'sg'
+                                },{
+                                    name: 'de'
+                                },
+                                {
+                                    name: 'fr'
+                                },{
+                                    name: 'nl'
+                                },
+                                {
+                                    name: 'it'
+                                },{
+                                    name: 'cz'
+                                },
+                                {
+                                    name: 'lu'
+                                },{
+                                    name: 'be'
+                                },
+                                {
+                                    name: 'es'
+                                },{
+                                    name: 'dk'
+                                },
+                                {
+                                    name: 'se'
+                                },{
+                                    name: 'at'
+                                },
+                                {
+                                    name: 'gr'
+                                },{
+                                    name: 'hu'
+                                },
+                                {
+                                    name: 'ie'
+                                },{
+                                    name: 'pl'
+                                },
+                                {
+                                    name: 'pt'
+                                }
+                            ]
+                        },
+                         {
+                            name: 'Converse',
+                            list: [
+                                {
+                                    name: 'uk'
+                                },
+                                {
+                                    name: 'us'
+                                }
+                            ]
+                        }
+                    ],
+                },
+                {
+                    name: '3.0',
+                    list: [],
+                    selectStr: '',
+                }
+            ],
             selectList: [{
                     name: 'TYPE',
                     list: ['2.0', '3.0'],
@@ -105,36 +489,41 @@ export default {
             content: '',
             totalBandWidth: '',
             usedBandWidth: '',
-            leftBrandWidth:'',
-            bwExpireDate:''//过期时间
+            leftBrandWidth: '',
+            bwExpireDate: '' //过期时间
         }
     },
     computed: {
         isShowGenerate() {
-            if (this.selectList[0].selectStr && this.selectList[1].selectStr && this.selectList[2].selectStr && this.selectList[3].selectStr) {
+            if (this.tab[0].selectStr && this.tab[1].selectStr && this.tab[2].selectStr && this.tab[3].selectStr) {
                 return true
             }
-        },
+        }
     },
     methods: {
         //点击切换
         clickType(item, index) {
-            if (index > 0) {
-                if (this.selectList[index - 1].selectStr) {
-                    item.isClick = !item.isClick;
-                } else {
-                    item.isClick = false
+            if(index>0){
+                if(this.tab[index-1].selectStr){
+                    item.isClick = !item.isClick
+                }else{
+                item.isClick = false
                 }
-            } else {
+            }else{
                 item.isClick = !item.isClick;
-            }
-
+            }          
         },
         //选择item
-        getEachItem(item, itemlist, index) {
-            item.selectStr = itemlist;
-            item.isClick = false;
-            item.currenIndex = index
+        getEachItem(item,index,index1,item1) {
+            item.selectIndex = index1
+            if(index==0){
+               this.list2 = this.mainData[index].list
+            }
+            if(index==1){
+                this.list3 = this.list2[index1].list
+            }
+            item.selectStr= item1.name
+            item.isClick = !item.isClick
         },
         //查询流量
         queryBrand() {
@@ -146,13 +535,14 @@ export default {
                 })
                 .then(function(response) {
                     if (response.data.code == '200') {
-                        _this.totalBandWidth = Number(response.data.result.totalBandWidth);                      
+                        _this.totalBandWidth = Number(response.data.result.totalBandWidth);
                         _this.usedBandWidth = Number(response.data.result.usedBandWidth)
-                        _this.leftBrandWidth =  Number(response.data.result.totalBandWidth - response.data.result.usedBandWidth)
-                        _this.leftBrandWidth = _this.leftBrandWidth/1000000000       
-                        _this.totalBandWidth = Math.ceil(_this.totalBandWidth/1000000000)
-                        _this.usedBandWidth = _this.usedBandWidth/1000000000       
                         _this.bwExpireDate = response.data.result.bwExpireDate
+                        _this.leftBrandWidth = Number(response.data.result.totalBandWidth - response.data.result.usedBandWidth)
+                        _this.leftBrandWidth = _this.leftBrandWidth / 1000000000
+                        _this.totalBandWidth = Math.ceil(_this.totalBandWidth / 1000000000)
+                        _this.usedBandWidth = _this.usedBandWidth / 1000000000
+
                     }
                 })
                 .catch(function(error) {
@@ -162,18 +552,12 @@ export default {
         //生成代理页面
         generateForm() {
             var _this = this;
-            var countryNum;
-            if (_this.selectList[1].selectStr == 'Footisite') {
-                countryNum = 2;
-            } else {
-                countryNum = 1;
-            }
             _this.$ajax.get(this.URLS.GenerateProxy, {
                     params: {
                         key: store.getters.oidcUser.Key,
-                        country: _this.selectList[2].selectStr,
-                        num: _this.selectList[3].selectStr,
-                        poolNum: countryNum
+                        country: _this.tab[2].selectStr,
+                        num: _this.tab[3].selectStr,
+                        poolNum: _this.tab[1].selectStr,
                     }
                 })
                 .then(function(response) {
@@ -221,7 +605,9 @@ export default {
     },
     created() {
         this.queryBrand();
-        console.log(store.getters)
+        this.list1 = this.mainData.map(item => {
+            return item
+        })
     },
 };
 </script>
@@ -289,6 +675,8 @@ export default {
         left: 70px;
         padding: 10px 0px;
         background-color: #ff496f;
+         max-height: 200px;
+        overflow-y: scroll;
         .active {
             background: #cd375a;
             display: inline-block;
@@ -297,9 +685,11 @@ export default {
         }
     }
     .webWrap {
-        left: 320px;
-        padding: 10px 5px;
+        left: 309px;
+        padding: 10px 10px;
         background-color: #f89c69;
+         max-height: 200px;
+        overflow-y: scroll;
         .active {
             background: #d96b3a;
             display: inline-block;
@@ -308,9 +698,11 @@ export default {
         }
     }
     .regionWrap {
-        left: 450px;
-        padding: 10px 10px;
+        left: 460px;
+        padding: 10px 5px;
         background-color: #5cc9f0;
+         max-height: 200px;
+        overflow-y: scroll;
         .active {
             background: #1aacd3;
             display: inline-block;
@@ -364,12 +756,12 @@ export default {
         margin-right: 80px;
         margin-top: 20px;
         .top {
-           padding: 40px 20px;
-        color: #6d6d6e;
-        background-color: rgba(255,255,255,0.7);
-        border-radius: 10px;
-        text-align: center;
-        width: 90px;
+            padding: 40px 20px;
+            color: #6d6d6e;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            text-align: center;
+            width: 90px;
             .name {
                 font-size: 16px;
                 font-weight: bold;
@@ -414,11 +806,11 @@ export default {
                 line-height: 20px;
             }
             .hours {
-                    color: #5bc9ef;
-                    font-size: 16px;
-                    font-weight: bold;
-                    width: 120px;
-                    text-align: center;
+                color: #5bc9ef;
+                font-size: 16px;
+                font-weight: bold;
+                width: 120px;
+                text-align: center;
             }
         }
     }
