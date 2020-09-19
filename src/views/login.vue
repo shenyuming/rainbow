@@ -4,7 +4,7 @@
         <div class="loginWrap">
             <img class="logo" src="../assets/image/logo.png" alt="">
             <img class="welcome" src="../assets/image/welcome.png" alt="">
-            <img class="discord" src="../assets/image/discord.png" alt="">
+            <img class="discord" src="../assets/image/noDiscond.png" alt="">
         </div>
     </div>
 </template>
@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 .loginWrap {
     width: 280px;
-    padding: 50px 0 50px 0;
+    padding: 60px 0 100px 0;
     border-radius: 20px;
     background-color: #fff;
     margin: 0 auto;

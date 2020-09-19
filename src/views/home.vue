@@ -290,7 +290,7 @@ export default {
                 .imgCenter {
                     text-align: center; // background-color: #fff;
                     img {
-                        width: 220px; // height: 108px;
+                        width: 230px; // height: 108px;
                     }
                 }
                 .brand {
@@ -316,6 +316,7 @@ export default {
                 }
                 .holder {
                     margin-top: 30px;
+                    margin-left: 17px;
                     .discount {
                         border: 1px solid #8c8c8b;
                         border-radius: 10px;
@@ -343,8 +344,11 @@ export default {
                 .operate {
                     position: absolute;
                     right: 25px;
-                    bottom: 10px;
+                    bottom: 20px;
                     cursor: pointer;
+                    img{
+                        width: 70px;
+                    }
                 }
                 .operateGrey {
                     display: flex;
@@ -352,10 +356,13 @@ export default {
                     align-content: center;
                     margin-top: 27px;
                     cursor: pointer;
+                     img{
+                        width: 70px;
+                    }
                 }
                 .info {
                     position: absolute;
-                    right: 20px;
+                    right: 10px;
                     top: 160px;
                     width: 100px;
                     width: 100px;
