@@ -130,10 +130,7 @@ export default {
     }
     .titie {
         height: 36px;
-        box-shadow: -2px 0px 10px #aaa, /*左边阴影*/
-        0px -2px 10px #aaa, /*上边阴影*/
-        4px 0px 10px #aaa, /*右边阴影*/
-        0px 5px 10px #aaa;
+        box-shadow: 2px 1px 4px #aaa;
         border-radius: 36px;
         cursor: pointer;
     }
@@ -144,10 +141,7 @@ export default {
         border-radius: 34px;
         position: relative;
         width: 144px;
-        box-shadow: -2px 0px 10px #aaa, /*左边阴影*/
-        0px -2px 10px #aaa, /*上边阴影*/
-        4px 0px 10px #aaa, /*右边阴影*/
-        0px 5px 10px #aaa;
+        box-shadow: 2px 1px 4px #aaa;
         border-radius: 36px;
         .itemImg {
             position: absolute;

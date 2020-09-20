@@ -271,6 +271,17 @@ export default {
 
 <style lang="scss" scoped>
 .homeWrap {
+    ::-webkit-input-placeholder { /* WebKit browsers */
+     color: #d1d1d1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #d1d1d1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color: #d1d1d1;
+}
     .main {
         width: 1200px;
         margin: 0 auto;
@@ -281,6 +292,7 @@ export default {
                 background-color: #f5fbfe;
                 border-radius: 20px;
                 padding: 20px 15px 20px 15px;
+                box-shadow: 2px 1px 4px #aaa;
                 width: 250px;
                 position: relative;
                 overflow: hidden;
