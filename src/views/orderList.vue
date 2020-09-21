@@ -72,6 +72,7 @@ export default {
                     params: {
                         page: _this.PageIndex,
                         limit: _this.pageSize,
+                        qtype: 'rainbow',
                         key: '',
                         skip: '',
                         take: ''
