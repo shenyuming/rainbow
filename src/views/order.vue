@@ -242,18 +242,7 @@ export default {
                                     name: 'us'
                                 }
                             ]
-                        },
-                         {
-                            name: 'Mesh',
-                            list: [
-                                {
-                                    name: 'uk'
-                                },
-                                {
-                                    name: 'de'
-                                }
-                            ]
-                        },
+                        },                        
                          {
                             name: 'Footsite',
                             list: [
@@ -289,17 +278,7 @@ export default {
                                 }
                             ]
                         },
-                         {
-                            name: 'Footsite',
-                            list: [
-                                {
-                                    name: 'us'
-                                },
-                                {
-                                    name: 'ca'
-                                }
-                            ]
-                        },
+                         
                          {
                             name: 'JD sports',
                             list: [
