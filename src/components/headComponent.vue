@@ -118,13 +118,13 @@ export default {
     .other {
         float: right;
         font-size: 18px;
-        color: #1a9bff;
+        color: #fff;
         cursor: pointer;
     }
     .contact {
         float: right;
         font-size: 18px;
-        color: #1a9bff;
+        color: #fff;
         cursor: pointer;
         margin-right: 40px;
     }

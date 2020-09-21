@@ -84,10 +84,9 @@ html,body{
         right: 40px;
         height: 50px;
         z-index: 10;
-        -webkit-animation: shadow .5s ease-out;
-        -moz-animation: shadow .5s ease-out;
-        -o-animation: shadow .5s ease-out;
-        animation: shadow .5s linear infinite;
+         -o-animation: bounce-down3 4s linear infinite;
+        -webkit-animation: bounce-down3 4s linear infinite;
+        animation: bounce-down3 4s linear infinite;
     }
     .whiteWaveWrap {
         overflow: hidden;
