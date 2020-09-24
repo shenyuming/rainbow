@@ -495,14 +495,14 @@ export default {
         getEachItem(item,index,index1,item1) {
             item.selectIndex = index1
             if(index==0){
-               this.list2 = this.mainData[index].list              
+               this.list2 = this.mainData[index1].list           
             }
             if(index==1){
                 this.tab[index+1].selectStr =''
                 this.list3 = this.list2[index1].list
             }
             item.selectStr= item1.name
-            console.log(item.selectStr)
+            // console.log(item.selectStr)
             item.isClick = !item.isClick
         },
         //查询流量
