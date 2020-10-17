@@ -19,17 +19,21 @@
             </div>
     
         </div>
-    
+       <div class="loginOut" @click="signOutOidc">
+               <img class="imgGoods" src="../assets/image/loginout.png" alt="" />
+        </div>
         <div class="other" @click="goSupport">
             Terms & Conditions
         </div>
         <div class="contact" @click="goContact">
             contact us
         </div>
+       
     </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'cloudComponent',
     data() {
@@ -63,6 +67,9 @@ export default {
 
     },
     methods: {
+         ...mapActions([
+           'signOutOidc'
+        ]),
         goContact() {
             window.location.href = 'http://www.proxyrainbow.com/contactus.html'
         },
@@ -101,6 +108,7 @@ export default {
                 }, 1000); //菜单块向左移动
             }
         }
+       
     },
     mounted() {},
     created() {}
@@ -118,12 +126,15 @@ export default {
     .other {
         float: right;
         font-size: 18px;
+        line-height: 36px;
         color: #fff;
         cursor: pointer;
+        margin-right: 40px;
     }
     .contact {
         float: right;
         font-size: 18px;
+        line-height: 36px;
         color: #fff;
         cursor: pointer;
         margin-right: 40px;
@@ -168,6 +179,13 @@ export default {
         }
         .active4{
              color: #8fee90;
+        }
+    }
+    .loginOut{
+        float: right;
+        img{
+            height: 36px;
+            cursor: pointer;
         }
     }
 }

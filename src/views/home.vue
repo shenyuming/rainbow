@@ -73,6 +73,36 @@
                 </ul>
             </div>
         </div>
+        <div class="mask" v-if="isPayShowFlag"></div>
+        <div class="payTypeWrap" v-if="isPayShowFlag">
+            <div class="close">
+                <img @click="closePay" class="imgGoods" src="../assets/image/X.png" alt="" />
+            </div>
+            <div class="con">
+                 <div>
+                     <div class="common" @click="choosePayType(1)">
+                         <div class="top">
+                              <span class="quanGrey" :class="{'active':payIndex===1}"></span>
+                              <img class="imgGoods" src="../assets/image/weChat.png" alt="" />
+                         </div>
+                         <div class="code" v-if="payjsQr&&payIndex===1">
+                            <img :src="payjsQr" alt="" />
+                         </div>
+                     </div>
+                      <div class="common" @click="choosePayType(2)">
+                          <div class="top">
+                            <span class="quanGrey" :class="{'active':payIndex===2}"></span>
+                            <img class="imgGoods" src="../assets/image/stripe.png" alt="" />
+                          </div>
+                     </div>
+                 </div>
+                 
+                 <div v-if="payIndex===2" class="next" @click="goStripe">
+                     NEXT
+                 </div>
+            </div>
+
+        </div>
     </div>
 </template>
 
@@ -151,7 +181,10 @@ export default {
             }],
             successUrl: '',
             cancelUrl: '',
-            checkoutSessionid: ''
+            checkoutSessionid: '',
+            isPayShowFlag:false,//弹窗
+            payIndex:0,//选中支付方式
+            payjsQr:''//二维码图片
         }
     },
     components: {
@@ -164,10 +197,23 @@ export default {
         }
     },
     methods: {
+        //选择支付方式
+        choosePayType(index){
+            this.payIndex = index
+        },
+        //关闭弹窗
+        closePay(){
+            this.isPayShowFlag = false
+        },
+        //stripe支付
+        goStripe(){
+           this.stripeFunc();
+        },
         buy(item) {
             var _this = this;
+            _this.isPayShowFlag = true
             if (item.discountKey) {
-                _this.stripeFunc();
+                // _this.stripeFunc();
             } else {
                 _this.$ajax.get(this.URLS.apply, {
                         params: {
@@ -179,9 +225,8 @@ export default {
                         console.log(response)
                         if (response.data.code == '200') {
                             _this.checkoutSessionid = response.data.result.checkoutSessionid
-                            _this.stripeFunc();
-
-
+                            _this.payjsQr = response.data.result.payjsQr
+                            // _this.stripeFunc();
                         } else {
                             _this.$message({
                                 message: response.data.message
@@ -192,8 +237,6 @@ export default {
                         console.log(error);
                     })
             }
-
-
         },
         async stripeFunc() {
             var _this = this;
@@ -240,7 +283,6 @@ export default {
                 })
                 .then(function(response) {
                     if (response.data.code == '200') {
-
                         _this.checkoutSessionid = response.data.result.checkoutSessionid
                         _this.price = response.data.result.price
                         _this.$set(item, 'finalPrice', _this.price)
@@ -273,15 +315,15 @@ export default {
 .homeWrap {
     ::-webkit-input-placeholder { /* WebKit browsers */
      color: #d1d1d1;
-}
+    }
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #d1d1d1;
-}
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #d1d1d1;
+    }
 
-:-ms-input-placeholder { /* Internet Explorer 10+ */
- color: #d1d1d1;
-}
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #d1d1d1;
+    }
     .main {
         width: 1200px;
         margin: 0 auto;
@@ -422,5 +464,82 @@ export default {
             }
         }
     }
+}
+.mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: 0 auto;
+        background-color: #fff;
+        opacity: 0.6;
+}
+.payTypeWrap{
+        background-color: #5d6359;
+        padding: 10px 40px 30px 50px;
+        border-radius: 20px;
+        width: 210px;
+        position: absolute;
+        left: 50%; 
+        top: 50%;
+        transform: translate(-50%, -50%); 
+
+        .close{
+            overflow: hidden;
+           img{
+               float: right;
+               cursor: pointer;
+               margin-top: 10px;
+               width: 20px;
+           }
+        }
+        .con{
+            .common{
+                margin-top: 15px;
+                .top{
+                    overflow: hidden;
+                    img{
+                        cursor: pointer;
+                        height: 50px;
+                    }
+                    .quanGrey{
+                        float: left;
+                        width:10px;
+                        height: 10px;
+                        border: 1px solid #fff;
+                        border-radius: 5px;
+                        margin-right: 10px;
+                        margin-top: 10px;
+                        &.active{
+                            background-color: #fff;
+                        }
+                    }
+                }
+            }
+            .code{
+                    width: 200px;
+                    height: 200px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    img{
+                        text-align: center;
+                        max-width: 100%;
+                    }
+            }
+            .next{
+               height: 50px;
+               border-radius: 30px;
+               line-height: 50px;
+               width: 146px;
+               text-align: center;
+               margin: 0 auto;
+               color: #fff;
+               background: linear-gradient(to right, #c08dec ,#ebaafe);
+               cursor: pointer;
+               font-size: 26px;
+               font-weight: bold;
+            }
+        }
 }
 </style>
