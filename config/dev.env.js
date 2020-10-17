@@ -7,7 +7,7 @@ module.exports = merge(prodEnv, {
     authority: '"https://www.proxyrainbow.com"',
     clientId: '"Rainbow.Pro"',
     redirectUri: '"http://localhost:8080/#/oidc-callback"',
-    postLogoutRedirectUri:'"http://localhost:8080"',
+    postLogoutRedirectUri:'"https://www.proxyrainbow.com"',
     responseType: '"code"',
     scope: '"openid profile Tgeapi"',
     automaticSilentRenew: true,
