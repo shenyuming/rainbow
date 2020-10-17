@@ -3,9 +3,9 @@
         <cloud-component></cloud-component>
         <head-component></head-component>
         <div class="aboutWrap">
-            <div class="close">
+            <!-- <div class="close">
                 <img src="../assets/image/X.png" alt="">
-            </div>
+            </div> -->
     
             <div class="contain">
                 <vue-scroll :ops="ops">
