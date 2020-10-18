@@ -288,6 +288,7 @@ export default {
                     if (response.data.code == '200') {
                         _this.checkoutSessionid = response.data.result.checkoutSessionid
                         _this.price = response.data.result.price
+                        _this.payjsQr = response.data.result.payjsQr
                         _this.$set(item, 'finalPrice', _this.price)
 
                     } else {
