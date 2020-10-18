@@ -4,7 +4,7 @@
         <div class="homeWrap">
             <head-component></head-component>
             <div class="main">
-                <ul>
+                <ul class="clearfix">
                     <li v-for="(item,index) in list" :key="index">
                         <div class="inner">
                             <div class="imgCenter">
@@ -130,10 +130,13 @@ export default {
                     { name: '....' },
                 ],
                 sizeList: [
-                    { name: '5GB-$60', id: 1 },
-                    { name: '10GB-$115', id: 2 },
-                    { name: '15GB-$165', id: 3 },
-                    { name: '20GB-$220', id: 4 },
+                    { name: '5GB-$60/¥414', id: 1 },
+                    { name: '10GB-$115/¥794', id: 2 },
+                    { name: '20GB-$223/¥1539', id: 3 },
+                    { name: '30GB-$324/¥2235', id: 4 },
+                    { name: '50GB-$528/¥3643', id: 5 },
+                    { name: '80GB-$816/¥5630', id: 6 },
+                    { name: '100GB-$996/¥6872', id: 7 },
                 ],
                 activeLinkId: '',
                 discountKey: '',
@@ -337,7 +340,6 @@ export default {
                 box-shadow: 2px 1px 4px #aaa;
                 width: 250px;
                 position: relative;
-                overflow: hidden;
                 .inner {
                     // background: linear-gradient(#fefdeb, #fcfdef);
                 }
@@ -416,10 +418,10 @@ export default {
                 }
                 .info {
                     position: absolute;
-                    right: 10px;
-                    top: 160px;
+                    right: -7px;
+                    top: 73px;
                     width: 100px;
-                    width: 100px;
+                    width: 140px;
                     padding: 10px 0;
                     line-height: 25px;
                     background: #fff;
