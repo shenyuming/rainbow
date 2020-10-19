@@ -196,7 +196,7 @@ export default {
     },
     filters: {
         formatPrice(price) {
-            return price ? `Trade Price: $${price}` : ''
+            return price ? `Trade Price: ￥${price}` : ''
         }
     },
     methods: {
