@@ -130,6 +130,13 @@ export default {
                                     name: 'sg'
                                 },
                             ]
+                        }, {
+                            name: 'Off-White',
+                            list: [
+                                {
+                                    name: 'EU-mix'
+                                }
+                            ]
                         },
                         {
                             name: 'Footlocker EU',
@@ -305,6 +312,8 @@ export default {
                                 },
                                 {
                                     name: 'sg'
+                                },{
+                                    name: 'my'
                                 },{
                                     name: 'de'
                                 },
