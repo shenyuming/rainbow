@@ -136,7 +136,7 @@ export default {
                     { name: '30GB-$324/¥2235', id: 4 },
                     { name: '50GB-$528/¥3643', id: 5 },
                     { name: '80GB-$816/¥5630', id: 6 },
-                    { name: '100GB-$996/¥6872', id: 7 },
+                    { name: '100GB-$1000/6900', id: 7 },
                 ],
                 activeLinkId: '',
                 discountKey: '',
