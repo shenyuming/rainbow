@@ -258,6 +258,8 @@ export default {
                                 },
                                 {
                                     name: 'ca'
+                                },{
+                                    name: 'ur'
                                 }
                             ]
                         }, 
