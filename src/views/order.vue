@@ -259,7 +259,7 @@ export default {
                                 {
                                     name: 'ca'
                                 },{
-                                    name: 'ur'
+                                    name: 'release'
                                 }
                             ]
                         }, 
