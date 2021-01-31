@@ -24,7 +24,7 @@
                             <div class="price">
                                 {{item.finalPrice | formatPrice}}
                             </div>
-                            <div class="operate" v-if="index==0">
+                            <div class="operate" v-if="index==0 || index ==3">
                                 <div @click="showDetail(index)">
                                     <img classs="size" src="../assets/image/plan.png" alt="">
                                 </div>
@@ -43,32 +43,11 @@
                         </div>
                         <div class="info" v-if="item.showFlag">
                             <div class="likeUl" v-for="(info,ind) in item.sizeList" :key="ind">
-                                <p :class="{'active': ind === item.activeLinkId}" @click="changeGB(index,ind)">{{info.name}}</p>
+                                <p :class="{'active': ind === item.activeLinkId}" @click="changeGB(info,index,ind)">{{info.name}}</p>
                             </div>
                             <div class="nav nav-border"></div>
                             <div class="nav nav-background"></div>
                         </div>
-                    </li>
-    
-                    <li>
-                        <div class="inner">
-                            <div class="imgCenter">
-                                <img src="../assets/image/icon4.png" alt="">
-                            </div>
-                            <p class="brand">Comming soon</p>
-                            <div class="detail">
-                                <p>surprise</p>
-                            </div>
-                            <div class="operateGrey">
-                                <div>
-                                    <img classs="size" src="../assets/image/planGrey.png" alt="">
-                                </div>
-                                <div>
-                                    <img class="buy" src="../assets/image/buyGrey.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-    
                     </li>
                 </ul>
             </div>
@@ -140,7 +119,8 @@ export default {
                 ],
                 activeLinkId: '',
                 discountKey: '',
-                showFlag: false
+                showFlag: false,
+                id:1,
             }, {
                 img: require('../assets/image/icon3.png'),
                 brand: 'RainBow Resi 3.0',
@@ -160,7 +140,8 @@ export default {
                 ],
                 activeLinkId: '',
                 discountKey: '',
-                showFlag: false
+                showFlag: false,
+                id:2
             }, {
                 img: require('../assets/image/icon2.png'),
                 brand: 'RainBow ISP',
@@ -180,14 +161,46 @@ export default {
                 ],
                 activeLinkId: '',
                 discountKey: '',
-                showFlag: false
+                showFlag: false,
+                id:3
+            }, {
+                img: require('../assets/image/icon4.png'),
+                brand: 'Daily DC',
+                detail: [
+                    { name: 'Daily DC for footlocker EU(new and old)/SG/AU/US drop' },
+                    { name: 'Task:proxy should be 1:1 Please' },
+                    { name: '....' },
+                ],
+                sizeList: [
+                    { name: 'EU 50-$30/¥193', id: 1 },
+                    { name: 'EU 100-$50/¥320', id: 2 },
+                    { name: 'EU 200-$100/¥640', id: 3 },
+                    { name: 'EU 300-$150/¥960', id: 4 },
+                    { name: 'EU 400-$200/¥1280', id: 5 },
+                    { name: 'US 50-$30/¥193', id: 6 },
+                    { name: 'US 100-$50/¥320', id: 7 },
+                    { name: 'US 200-$100/¥640', id: 8 },
+                    { name: 'US 300-$150/¥960', id: 9 },
+                    { name: 'US 400-$200/¥1280', id: 10 },
+                    { name: 'AU 50-$30/¥193', id: 11 },
+                    { name: 'AU 100-$50/¥320', id: 12 },
+                    { name: 'AU 200-$100/¥640', id: 13 },
+                    { name: 'AU 300-$150/¥960', id: 14 },
+                    { name: 'AU 400-$200/¥1280', id: 15 }
+                ],
+                activeLinkId: '',
+                discountKey: '',
+                showFlag: false,
+                id:4
             }],
             successUrl: '',
             cancelUrl: '',
             checkoutSessionid: '',
             isPayShowFlag:false,//弹窗
             payIndex:0,//选中支付方式
-            payjsQr:''//二维码图片
+            payjsQr:'',//二维码图片
+            numberInfo: 50,
+            country: 'eu'
         }
     },
     components: {
@@ -218,14 +231,22 @@ export default {
             if (item.discountKey) {
                 // _this.stripeFunc();
             } else {
-                _this.$ajax.get(this.URLS.apply, {
-                        params: {
+                var params = {}
+                if(item.id === 1){
+                     params = {
                             shopType: item.activeLinkId + 1,
                             discountKey: ''
                         }
-                    })
+                } else if(item.id === 4){
+                    params = {
+                            shopType: 8,
+                            discountKey: '',
+                            num:_this.numberInfo,
+                            country:_this.country
+                        }
+                }
+                _this.$ajax.get(this.URLS.apply, { params:params})
                     .then(function(response) {
-                        console.log(response)
                         if (response.data.code == '200') {
                             _this.checkoutSessionid = response.data.result.checkoutSessionid
                             _this.payjsQr = response.data.result.payjsQr
@@ -257,7 +278,12 @@ export default {
                     console.error('Error:', error);
                 });
         },
-        changeGB(index, idx) {
+        changeGB(info,index, idx) {
+            if(index == 3){
+               let reg = info.name.match(/^([a-zA-Z]+)\s{1}(\d+)-/)
+               this.country =reg[1].toLowerCase()
+               this.numberInfo = reg[2]
+            }
             this.list[index].activeLinkId = idx;
         },
         showDetail(index) {
@@ -330,7 +356,7 @@ export default {
     }
     .main {
         width: 1200px;
-        margin: 0 auto;
+        margin: 80px auto;
         ul {
             display: flex;
             justify-content: space-between;
@@ -419,10 +445,9 @@ export default {
                 }
                 .info {
                     position: absolute;
-                    right: -7px;
-                    top: 73px;
-                    width: 100px;
-                    width: 140px;
+                    left: 150px;
+                    bottom: 90px;
+                    width: 150px;
                     padding: 10px 0;
                     line-height: 25px;
                     background: #fff;
@@ -450,7 +475,7 @@ export default {
                     border-color: #fff transparent transparent transparent;
                 }
                 .likeUl {
-                    padding: 3px 10px;
+                    padding: 1px 10px;
                     cursor: pointer;
                     p {
                         &.active {
@@ -469,7 +494,7 @@ export default {
     }
 }
 .mask{
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         bottom: 0;

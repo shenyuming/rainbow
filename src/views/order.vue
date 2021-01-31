@@ -4,7 +4,7 @@
         <head-component></head-component>
         <div class="orderWrap">
             <div class="leftInfo">
-                <div class="commonTab" :class="[item.classname,{'cirlcle':item.isClick}]" v-for="(item, index) in tab" :key="item.name">
+                <div class="commonTab" :class="[item.classname,{'cirlcle':item.isClick}]" v-for="(item, index) in tab" :key="index">
                     <div class="title" @click="clickType(item, index)">{{ item.selectStr || item.name }}</div>
                     <div v-show="item.isClick">
                         <div v-show="item.classname==='typeWrap'">
@@ -21,7 +21,7 @@
                             </p>
                             </div>
                         </div>
-                         <div v-show="item.classname==='regionWrap'">
+                        <div v-show="item.classname==='regionWrap'">
                             <div class="type" v-for="(item3,index3) in list3" :key="index3">
                             <p class="typeLi">
                                 <span @click="getEachItem(item,index,index3,item3)">{{ item3.name }}</span>
@@ -29,7 +29,8 @@
                             </div>
                         </div>
                          <div v-show="item.classname==='amountWrap'">
-                             <input class="number" type="number" v-model="item.selectStr">
+                              <input v-if="showNumFlag" class="number" value="All" disabled>
+                             <input  v-else class="number" type="number" v-model="item.selectStr">
                         </div>
                     </div>
                 </div>
@@ -440,53 +441,44 @@ export default {
                     name: '3.0',
                     list: [],
                     selectStr: ''
-                }
-            ],
-            selectList: [{
-                    name: 'TYPE',
-                    list: ['2.0', '3.0'],
-                    isClick: false,
-                    classname: 'typeWrap',
-                    selectStr: '',
-                    currenIndex: ''
-                },
-                {
-                    name: 'WEB',
-                    list: ['Footisite', 'Shopify'],
-                    isClick: false,
-                    classname: 'webWrap',
-                    selectStr: '',
-                    currenIndex: ''
-                },
-                {
-                    name: 'Region',
-                    list: ['us', 'de', 'au', 'uk', 'fr'],
-                    isClick: false,
-                    classname: 'regionWrap',
-                    selectStr: '',
-                    currenIndex: ''
-                },
-                {
-                    name: 'AMOUNT',
-                    list: [],
-                    isClick: false,
-                    classname: 'amountWrap',
-                    selectStr: '',
-                    currenIndex: ''
+                },{ 
+                    name: 'Daily DC',
+                    list: [
+                        {
+                            name: 'Footsite',
+                            list:[{
+                                name:'eu',
+                            },{
+                                name:'au',
+                            },{
+                                name:'us',
+                            }]
+                        }
+                    ],
+                    selectStr: ''
                 }
             ],
             content: '',
             totalBandWidth: '',
             usedBandWidth: '',
             leftBrandWidth: '',
-            bwExpireDate: '' //过期时间
+            bwExpireDate: '', //过期时间
+            showNumFlag: false
         }
     },
     computed: {
         isShowGenerate() {
-            if (this.tab[0].selectStr && this.tab[1].selectStr && this.tab[2].selectStr && this.tab[3].selectStr) {
+            if(this.tab[0].selectStr=='Daily DC'){
+              if (this.tab[0].selectStr && this.tab[1].selectStr && this.tab[2].selectStr) {
                 return true
+              }
+            }else{
+              if (this.tab[0].selectStr && this.tab[1].selectStr && this.tab[2].selectStr && this.tab[3].selectStr) {
+                return true
+              }
             }
+            
+            
         }
     },
     methods: {
@@ -506,7 +498,13 @@ export default {
         getEachItem(item,index,index1,item1) {
             item.selectIndex = index1
             if(index==0){
-               this.list2 = this.mainData[index1].list           
+               this.list2 = this.mainData[index1].list
+               item.selectStr= item1.name
+               if(item.selectStr=='Daily DC'){
+                   this.showNumFlag = true
+               }else{
+                   this.showNumFlag = false
+               }
             }
             if(index==1){
                 this.tab[index+1].selectStr =''
@@ -543,14 +541,20 @@ export default {
         //生成代理页面
         generateForm() {
             var _this = this;
-            _this.$ajax.get(this.URLS.GenerateProxy, {
-                    params: {
+            var params = {};
+            if(this.tab[0].selectStr=='Daily DC'){
+                    params={
+                        country: _this.tab[2].selectStr
+                    }
+            }else{
+                   params={
                         key: store.getters.oidcUser.Key,
                         country: _this.tab[2].selectStr,
                         num: _this.tab[3].selectStr,
                         webName: _this.tab[1].selectStr,
                     }
-                })
+            }
+            _this.$ajax.get(this.URLS.GenerateProxy, {params})
                 .then(function(response) {
                     console.log(response)
                     if (response.data.code == '200') {
