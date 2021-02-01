@@ -239,10 +239,7 @@ export default {
                         }
                 } else if(item.id === 4){
                     params = {
-                            shopType: 8,
-                            discountKey: '',
-                            num:_this.numberInfo,
-                            country:_this.country
+                            shopType: `8:${_this.numberInfo}:${_this.country}`
                         }
                 }
                 _this.$ajax.get(this.URLS.apply, { params:params})
