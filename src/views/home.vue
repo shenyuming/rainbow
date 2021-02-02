@@ -444,7 +444,7 @@ export default {
                     position: absolute;
                     left: 150px;
                     bottom: 90px;
-                    width: 150px;
+                    width: 160px;
                     padding: 10px 0;
                     line-height: 25px;
                     background: #fff;
@@ -453,6 +453,7 @@ export default {
                     border-radius: 4px;
                     text-align: center;
                     color: #929292;
+                    z-index: 10;
                 }
                 .nav {
                     position: absolute;
