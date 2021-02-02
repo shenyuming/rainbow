@@ -541,20 +541,11 @@ export default {
         //生成代理页面
         generateForm() {
             var _this = this;
-            var params = {};
             if(this.tab[0].selectStr=='Daily DC'){
-                    params={
+                    var params1={
                         country: _this.tab[2].selectStr
                     }
-            }else{
-                   params={
-                        key: store.getters.oidcUser.Key,
-                        country: _this.tab[2].selectStr,
-                        num: _this.tab[3].selectStr,
-                        webName: _this.tab[1].selectStr,
-                    }
-            }
-            _this.$ajax.get(this.URLS.GenerateProxy, {params})
+                     _this.$ajax.get(this.URLS.GenerateDailyProxy, {params: params1})
                 .then(function(response) {
                     console.log(response)
                     if (response.data.code == '200') {
@@ -569,6 +560,29 @@ export default {
                 .catch(function(error) {
                     console.log(error);
                 })
+            }else{
+                   var params2={
+                        key: store.getters.oidcUser.Key,
+                        country: _this.tab[2].selectStr,
+                        num: _this.tab[3].selectStr,
+                        webName: _this.tab[1].selectStr,
+                    }
+                       _this.$ajax.get(this.URLS.GenerateProxy, {params: params2})
+                .then(function(response) {
+                    console.log(response)
+                    if (response.data.code == '200') {
+                        _this.content = response.data.result;
+                        _this.content = _this.content.replace(/↵/g, "\n");
+                    } else {
+                        _this.$message({
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+            }
         },
         //删除
         deleteInfo() {
